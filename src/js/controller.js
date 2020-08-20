@@ -12,6 +12,7 @@ var ingreso;
         }
 
         $scope.checkTyc = false;
+        $scope.checkCyp = false;
 
         $scope.documentos = [
             {value:1, name:"Cédula de Ciudadania"},
@@ -169,6 +170,10 @@ var ingreso;
                 $scope.cuota = 0;
                 $scope.cuota = undefined;
             }
+        }
+
+        $scope.mostrarForm = function(){
+            return ($scope.modal == true || $scope.modalDos == false) && ($scope.modal == false || $scope.modalDos == true);
         }
     })
 
