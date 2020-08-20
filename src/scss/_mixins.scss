@@ -1,0 +1,43 @@
+@mixin Asmall(){
+    @media only screen and (max-width: #{$Asmall}){
+        @content;
+    }
+}
+
+// Small devices (landscape phones, 576px and   up)
+
+@mixin smallTablet(){
+    @media (min-width: #{$small}) and (max-width: #{$Atablet}){
+        @content;
+    }
+}
+
+// Medium devices (tablets, 768px and up)
+
+@mixin tabletLaptop(){
+    @media (min-width: #{$tablet}) and (max-width: #{$Alaptop}){
+        @content;
+    }
+}
+
+// Large devices (desktops, 992px and up)
+
+@mixin laptopDesktop(){
+    @media (min-width: #{$laptop}) and (max-width: #{$Adesktop}){
+        @content;
+    }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+
+@mixin desktopFull(){
+    @media (min-width: #{$desktop}) and (max-width: #{$Afull}){
+        @content;
+    }
+}
+
+@mixin full(){
+    @media (min-width: #{$full}){
+        @content;
+    }
+}

@@ -1,0 +1,537 @@
+@import 'fuentes';
+@import 'variables';
+@import 'mixins';
+
+*{  
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'SegoeUI';
+}
+
+/* Estilos Botones y pasos */
+
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+    display: none;
+}
+
+#iArrowLeft {
+    font-size: 30px;
+    float: left;
+    margin-top: -5px;
+    margin-right: 20px;
+}
+
+.json{
+    grid-column: 3;
+    grid-row: 2;
+}
+
+/*inputs*/
+#msform input, #msform textarea, select {
+    padding: 10px 10px 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: segoeui;
+    color: #2C3E50;
+    font-size: 13px;
+    border-radius: 5px;
+}
+
+#msform input:focus, #msform textarea:focus {
+    box-shadow: none !important;
+    border: 1px solid #165096;
+    outline-width: 0;
+    transition: All 0.5s ease-in;
+}
+
+#msform input[type=button]:focus{
+    border: 1px solid $color-cliente-dos;
+}
+
+/*buttons*/
+#msform .action-button, input[type=button], input[type=submit] {
+    width: 100%;
+    height: 45px;
+    background: $color-cliente-dos;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+    font-size: 12px;
+    margin: 5px 0px;
+    letter-spacing: 1px;
+}
+
+/*  #msform .action-button:hover, #msform .action-button:focus {
+    box-shadow: 0 0 0 2px #2A9FD8, 0 0 0 3px #2A9FD8;
+} */
+
+#msform .action-button-previous {
+    width: 180px;
+    height: 45px;
+    background: #fff;
+    font-weight: bold;
+    color: $color-cliente-dos;
+    border: 0 none;
+    border-radius: 5px;
+    cursor: pointer;
+    float: left;
+    border: solid 1px $color-cliente-dos;    
+    margin: 5px 0px 0px 10px;
+}
+
+/*headings*/
+.fs-title {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #2C3E50;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+span.fs-subtitle {
+    text-align: left !important;
+    font-weight: normal;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+    display: block;
+    margin: 0px 0px 5px 0px;
+}
+
+/*progressbar*/
+#progressbar {
+    margin-bottom: 15px;
+    overflow: hidden;
+    /*CSS counters to number the steps*/
+    counter-reset: step;
+}
+
+#progressbar li {
+    list-style-type: none;
+    color: #818181;
+    text-transform: uppercase;
+    font-size: 9px;
+    width: 33.33%;
+    float: left;
+    position: relative;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+#progressbar li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 24px;
+    height: 24px;
+    line-height: 26px;
+    display: block;
+    font-size: 12px;
+    color: #fff;
+    background: #000;
+    border-radius: 25px;
+    margin: 0 auto 10px auto;
+    text-align: center;
+    transition: background 2s;
+    -webkit-transition: background 2s;
+}
+
+/*progressbar connectors*/
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #818181;
+    position: absolute;
+    left: -50%;
+    top: 9px;
+    z-index: -1; /*put it behind the numbers*/
+}
+
+#progressbar li:first-child:after {
+    /*connector not needed before the first step*/
+    content: none;
+}
+
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before, #progressbar li.active:after {
+    background: #e1061b;
+    color: #fff;
+    transition: background 2s;
+    -webkit-transition: background 2s;
+}
+
+
+/* Not relevant to this form */
+.dme_link {
+    margin-top: 30px;
+    text-align: center;
+}
+.dme_link a {
+    background: #FFF;
+    font-weight: bold;
+    color: #ee0979;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 5px 25px;
+    font-size: 12px;
+}
+
+.dme_link a:hover, .dme_link a:focus {
+    background: #C5C5F1;
+    text-decoration: none;
+}
+
+/* Angular Events */
+
+/* Comportamiento Campo Invalido */
+
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched{
+    border: 1px solid #165096 !important;
+}
+/* Comportamiento botton desabilitado */
+input[type=button]:disabled,
+button:disabled, input[type=submit]:disabled{
+    background-color: #C2C2C2 !important;
+    color: #ffffff !important;
+    border: solid 1px #C2C2C2 !important;
+    cursor: none;
+    cursor: -webkit-no-drop !important;
+    cursor: no-drop !important; 
+  }
+
+  /* * Splash * */
+
+  .splash{
+    background-color: $color-cliente;
+    grid-column: 1;
+    grid-row: 1;
+    z-index: 1;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 33% 33% 33%;
+    grid-template-columns: 100%;
+    .splashLogo{
+        grid-row: 1;
+        align-self: center;
+        justify-self: center;                     
+    }
+    .splashPowerby{
+        grid-row: 2;
+        color: white;
+        align-self: end;
+        justify-self: center;
+        font-size: 10px; 
+    }
+    .splashSantander{
+        grid-row: 3;
+        align-self: start;
+        justify-self: center;   
+    }
+
+}
+
+  body{
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+        .superContenedor{
+            display: none;
+            grid-column: 1;
+            grid-row: 1;
+        }
+  }
+
+/* Encabezado */
+.headerSuperior{
+    background-color: $color-cliente;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 15px;
+    .brands{
+        grid-column: 2;
+        display: grid;
+        grid-template-columns: auto auto;
+        img{
+            width: 60%;
+            align-self: center;
+            justify-self: center;
+        }
+        .logoCliente{
+            grid-column: 1;
+        }
+        .logoSantader{
+            grid-column: 2;
+        }
+    }
+}
+
+.contenedor{
+    display: grid;
+    grid-template-columns: 5% 90% 5%;
+    .contenido{
+        grid-column: 2;
+    }
+}
+
+/* Contenedor Stepper */
+.containerLine{
+    margin-top: 15px;
+}
+
+/* Contenedor Step */
+fieldset{
+    border: solid 1px #d7d7d7;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 7px #d7d7d7;
+}
+
+.titulo{
+    text-align: center;
+    margin: 15px 0;
+}
+
+hr{
+    border: solid 0.5px #d7d7d7;
+}
+
+.contField.primero{
+    margin-top: 10px;
+}
+
+.error{
+    font-size: 10px;
+    color: red;
+    position: absolute;
+    margin-top: -10px;
+}
+
+/* Signo pesos izquierda */
+.input-peso {
+    position: relative;
+}
+.input-peso.left input {
+    padding-left:18px;
+}
+
+.input-peso:before {
+    position: absolute;
+    top: 0;
+    content:"$";
+}
+.input-peso.left:before {
+    left: 5px;
+}
+
+.input-euro.right:before {
+    right: 5px;
+}
+
+/* Simbolo Obligatorio rojo */
+
+u.asRed {
+    text-decoration: none;
+    color: red;
+}
+
+/* Radio Buttons */
+  
+  /* style your lables/button */
+  input[type="radio"] + div {
+    /* keep pointer so that you get the little hand showing when you are on a button */
+    cursor: pointer;
+    /* the following are the styles */
+    border-radius: 3px;
+    padding: 5px 5px;
+    background-color: #FDFDFD;
+    border: 1px solid $color-btn-disabled !important;
+    width: 95%;
+    height: 50px;
+    border: none;
+}
+
+.radio {
+    input[type="radio"]:checked + div {
+      /* style for the checked/selected state */
+      border-radius: 5px;
+      box-shadow: 0px 1px 7px 0px $color-btn-disabled;
+      background-color: white;
+      border: none;
+      font-weight: 800;
+    }
+  }
+
+  .contPeriodo{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto auto;
+    width: 100%;    
+    span.radio {          
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
+    width: 100%;
+    margin-bottom: 5px;
+        input {
+        grid-column: 1;
+        grid-row: 1;
+        opacity: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        }
+  
+        div.mes{
+        grid-column: 1;
+        grid-row: 1;
+        font-size: 13px;
+        color: $grisOscuro;
+        
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 100%;
+            p{
+                grid-column: 1;
+                grid-row: 1;
+                align-self: center;
+                justify-self: center;
+            }
+        }
+  }
+}
+
+#seiscero, #ochocuatro{
+    grid-column: 2;
+}
+#cuatroocho, #seiscero{
+    grid-row: 1;
+}
+#sietedos, #ochocuatro{
+    grid-row: 2;
+}
+
+input:disabled + div {
+    opacity: 0.5;
+}
+
+/* Pie */
+
+.pieImagen{
+    img{
+    width: 35%;
+    }
+}
+.pie{
+    text-align: center;
+    margin: 5px 0;
+    small{
+        font-size: 10px;
+        color: $grisOscuro;
+    }
+}
+
+.contTitulo{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    margin-bottom: 10px;
+
+    i{
+        grid-column: 1;
+    }
+    p{
+        grid-column: 2;
+    }
+
+    i, p{
+        align-self: center;
+        justify-self: center;
+    }
+}
+
+/* TYC Parrafo */
+.contFieldTyc{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: auto;
+    grid-row-gap: 22px;
+    .imgTyc{
+        grid-column: 1;
+        grid-row: 1;
+        align-self: center;
+        justify-self: center;
+        margin: 10px 0;
+        img{
+            width: 100%;
+        }
+    }
+    .pTyc{
+        grid-column: 2;
+        grid-row: 1;
+        font-size: 10px;
+        margin: 10px 0;
+    }    
+}
+
+.tycInput{
+    grid-column: 1/3;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 12% 88%;
+        input{
+            grid-column: 1;
+            grid-row: 1;
+            margin-bottom: 0px;
+            align-self: center;
+            justify-self: center;
+        }
+        div{
+            grid-column: 2;
+            grid-row: 1;
+            font-size: 12px;
+        }
+}
+
+/* Modal */
+
+.gridContenidoStep{
+    display: grid;
+    grid-template-columns: 100%;
+    .containerForm, .containerModal{
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .containerModal{
+        border: solid 1px #d7d7d7;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 7px #d7d7d7;
+        z-index: 2;
+    }
+}
+
+.squareModal{
+    overflow: auto;
+    height: 52vh;
+    font-size: 12px;
+    margin: 5px 0px;
+}
+
+form{
+    width: 100%;
+}
+
+
+
+

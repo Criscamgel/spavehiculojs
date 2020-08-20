@@ -1,0 +1,93 @@
+<div class="contField">
+<div ng-show="contactForm.ingresos.$touched && contactForm.ingresos.$invalid">
+    <small class="error">Inserta tus ingresos mensuales</small>
+</div>
+<div ng-show="contactForm.ingresos.$error.min || contact.DatosFinancieros.IngresoMensual < min">
+    <small class="error">El valor minimo a financiar es de {{min | currency:"$ ":0}}</small>
+</div>
+</div>
+
+<div class="contField">
+<span class="fs-subtitle">¿Cómo te llamas?<u class="asRed">*</u></span>
+<input type="text" name="name" placeholder="Ingresa tus nombres y apellidos" ng-model="contact.DatosBasicos.Nombre1" ng-required="true" ng-minlength="3" ng-maxlength="20" replace="[^a-zA-Z\s]" with=""/>
+<div ng-show="contactForm.name.$touched && contactForm.name.$invalid || contactForm.name.$error.minlength || contactForm.name.$error.maxlength">
+    <small class="error">Ingresa un nombre válido</small>
+</div>
+</div>
+
+<div class="contField dosCol">
+<div>
+    <span class="fs-subtitle">Tipo de identificación<u class="asRed">*</u></span>
+    <select name="selDocumento" ng-model="contact.DatosBasicos.TipoDocumento" ng-selected="stringToNumber()" ng-required="true">
+            <option value="" disabled selected>Selecciona tu tipo de Identificación</option>
+            <option value="{{item.value}}" ng-repeat="item in documentos">{{item.name}}</option>
+    </select>
+
+    <div ng-show="contactForm.selDocumento.$touched && contactForm.selDocumento.$invalid">
+        <small class="error">Ingresa un tipo de documento válido</small>
+    </div>
+</div>
+<div>
+    <span class="fs-subtitle">Número de identificación<u class="asRed">*</u></span>
+    <input type="number" name="id" placeholder="Ingresa tu número de identificación" ng-model="contact.DatosBasicos.NumeroDocumento" ng-required="true" ng-pattern="/^[0-9]{1,11}$/" ng-minlength="6" ng-maxlength="11"/>
+    <div ng-show="contactForm.id.$touched && contactForm.id.$invalid || contactForm.id.$error.minlength || contactForm.id.$error.maxlength || contactForm.id.$error.pattern">
+        <small class="error">Ingresa un número de identificación válido</small>
+    </div>
+</div>
+</div>
+
+<div class="contField">
+<span class="fs-subtitle">Teléfono de contacto<u class="asRed">*</u></span>
+<input type="number" name="phone" placeholder="Ingresa tu número" ng-model="contact.DatosBasicos.Celular" ng-required="true" ng-minlength="7" ng-maxlength="10" ng-pattern="/^[0-9]{1,10}$/"/>
+<div ng-show="contactForm.phone.$touched && contactForm.phone.$invalid || contactForm.phone.$error.minlength || contactForm.phone.$error.maxlength || contactForm.phone.$error.pattern">
+    <small class="error">Ingresa un teléfono válido</small>
+</div>
+</div>
+
+<div class="contField">
+<span class="fs-subtitle">Correo electrónico<u class="asRed">*</u></span>
+<input type="email" name="email" placeholder="Ingresa tu correo electrónico" ng-model="contact.DatosBasicos.CorreoPersonal" ng-required="true" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"/>
+<div ng-show="contactForm.email.$touched && contactForm.email.$invalid || contactForm.email.$error.pattern">
+    <small class="error">Ingresa un correo eléctronico válido</small>
+</div>
+</div>
+
+<hr>
+
+<div class="contFieldTyc">
+
+<!-- <div class="imgTyc">
+    <img src="assets/premiercredit.png" alt="">
+</div> -->
+
+<div class="pTyc">
+    <p class="tyc">PREMIER CREDIT o el TERCERO AUTORIZADO quedan autorizados para obtener información sobre mis relaciones comerciales con otras entidades y consultar mis reportes ante las centrales de información.</p>
+</div>
+<div class="tycInput">
+    <input type="checkbox" name="checkTyc" ng-model="checkTyc" ng-change="contact.OtrosDatos.AutorizaConsultaCentrales = checkTyc; contact.OtrosDatos.AutorizaMareigua = checkTyc;"> <strong class="texto">He leido y acepto los <u class="linkU" ng-click="modal=true" ng-required="true">Términos y Condiciones</u></strong>
+</div>
+</div>
+
+|| contactForm.selDocumento.$invalid || contactForm.name.$invalid || checkTyc == false
+
+|| contactForm.cuotas.$invalid || contactForm.cuota.$invalid
+
+<div class="containerModal" ng-show="modalDos">
+    <!-- <h3 class="titleModal"><i id="iArrowLeftm" ng-click="modal=false" class="fa fa-angle-left" aria-hidden="true"></i> Términos y condiciones</h3> -->
+    <div class="contTitulo">
+        <i id="iArrowLeft" class="fa fa-angle-left" aria-hidden="true"></i>
+        <p class="titulo"><strong>Condiciones de privacidad</strong></p>
+    </div>
+    <hr>
+    <div class="btnTyc">
+        <div class="squareModal">
+            <p>Por medio de la presente manifiesto que he (hemos) leído y acepto (amos) los términos
+                    y condiciones a continuación descritos para la solicitud del producto:</p><br/><br/>
+            <Strong>Consulta a centrales de riesgo y bases de datos</Strong><br/><br/>
+            <p>Autorizo(amos) de manera expresa e irrevocable a Premier Credit (indistintamente “Premier Credit” o “Premier”), y a quien represente sus derechos o a sus sucesores a cualquier título a: 1. Reportar, procesar, solicitar y divulgar a cualquier Operador de bases de datos e información financiera, crediticia, comercial, de servicios y proveniente de terceros países, toda la información referente a mi (nuestro) comportamiento como cliente(s) o prospecto de clientes de Premier Credit, de conformidad con los reglamentos a los cuales se sujeten las entidades antes mencionadas y la normatividad vigente sobre bases de datos. 2. Consultar ante cualquier Operador de bases de datos e información financiera, crediticia, comercial, de servicios y proveniente de terceros países mi (nuestro) endeudamiento directo o indirecto con las entidades financieras del país así como la información disponible sobre el cumplimiento o manejo dado a mis (nuestros) compromisos y obligaciones con dicho sector. 3. Conservar, tanto en Premier Credit, como en los Operadores de bases de datos e información financiera, crediticia, comercial, de servicios y proveniente de terceros países, con las debidas actualizaciones y durante el periodo necesario señalado en las disposiciones legales o en sus reglamentos, la información indicada en los numerales (1) y (2) anteriores. 4. Suministrar a cualquier Operador de bases de datos e información financiera, crediticia, comercial, de servicios y proveniente de terceros países, información relativa a mis (nuestras) solicitud(es) de crédito así como datos atinentes a mis (nuestras) relaciones comerciales, financieras y en general socioeconómicas que haya(mos) entregado o que consten en registros públicos, bases de datos públicas o documentos públicos. 5. Suministrar toda la información consultada y almacenada por Premier Credit, a quien represente sus derechos o a sus sucesores a cualquier título, a las matrices, filiales o subordinadas de la matriz y demás entidades vinculadas con el mismo grupo, así como a terceros para fines comerciales. Declaro(amos) que conozco(conocemos) y acepto(amos) que los reportes negativos que Premier Credit, a cualquier título realice a cualquier Operador de bases de datos e información financiera, crediticia, comercial, de servicios y proveniente de terceros países, pueden generar consecuencias negativas en su acceso al crédito y demás servicios financieros, así como conozco(conocemos) el derecho que me(nos) asiste de solicitar rectificación y actualización de la información cuando esta no corresponda con la realidad crediticia, sin que tal derecho implique revocatoria alguna de las autorizaciones que se confieren a Premier Credit. <p>
+            <Strong>Consulta a Mareigua Ltda. </Strong><br/><br/>
+            <p>Entiendo(emos) y acepto(amos) que Premier Credit (en adelante Premier), aliado en el proceso de crédito de vehículo, informa que tiene publicadas sus políticas de recolección, uso, y administración de la información personal en la página www.premiercredit.co El o los titulares de la información personal informan a Premier que en desarrollo de los pagos efectuados de aportes al Sistema de Protección Social, en desarrollo de la autoliquidación y pagos o de la liquidación por parte de un eventual empleador, han entregado su información personal al diligenciar la Planilla Integrada de Liquidación de Aportes -PILA- información relacionada con los ingresos mensuales base de cotización, pagos a través del PILA y otros datos financieros. Con base en lo anterior, el (los) titular(es)de la información confiere(n) autorización a Premier para tratar su información personal, recolectar, transferir, almacenar, usar, circular, suprimir, compartir, actualizar, y transmitir la información personal con los siguientes fines: 1) Análisis de riesgos financieros, para ofrecimiento de productos financieros; 2) Para el procesamiento de la información y con el resultado, se entreguen reportes a los establecimientos de crédito aliados de Premier para que se analice y decida sobre el otorgamiento de productos financieros; 3) Para recolectar datos personales, consultarlos, procesarlos, divulgarlos y mantenerlos, en cualquier operador de base de datos. Se reconoce y acepta que los datos objeto de tratamiento, pueden llegar a quedar alojados fuera de Colombia, en virtud de contratos o procesamiento de tal información con responsables de tal manejo fuera de Colombia, caso en el cual Premier entregará información bajo la existencia de un contrato y a responsables ubicados en países con un nivel de protección de datos similar o superior al existente en Colombia. Se deja expresa constancia que la presente autorización puede ser revocada por el usuario y titular de la información personal, en la medida que se cumplan los requisitos legales para tal revocatoria. Lo anterior se encuentra de conformidad con la Ley 1581 de 2012. </p>
+        </div>
+        <input class="buttonModal" type="button" value="ACEPTAR" ng-click="modal=false; checkTyc=true"/>
+    </div>            
+</div>
