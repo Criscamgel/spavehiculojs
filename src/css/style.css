@@ -531,3 +531,70 @@ input:disabled + div {
 
 form {
   width: 100%; }
+
+.pointer {
+  cursor: pointer; }
+
+.aprobado img, .negado img {
+  width: 100%; }
+
+.aprobado .textres, .negado .textres {
+  margin: 5px 0;
+  text-align: center;
+  font-size: 14px; }
+  .aprobado .textres .titleAprobe, .negado .textres .titleAprobe {
+    color: green; }
+
+.negado .textdos {
+  margin: 15px 0;
+  text-align: center;
+  font-size: 14px; }
+  .negado .textdos .titleNega {
+    color: red; }
+
+/* Tablet */
+@media only screen and (min-width: 576px) {
+  .contenedor {
+    -ms-grid-columns: 25% 50% 25%;
+    grid-template-columns: 25% 50% 25%; }
+  .headerSuperior {
+    -ms-grid-columns: 25% 50% 25%;
+    grid-template-columns: 25% 50% 25%; }
+    .headerSuperior .brands .logoSantader {
+      width: 45%; }
+  /* Fondo */
+  body {
+    background-image: url(../../assets/fondo.png);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-attachment: fixed;
+    background-size: cover; }
+  fieldset {
+    background-color: rgba(255, 255, 255, 0.84); }
+  .pie small {
+    color: white; }
+  .noBig {
+    display: none; }
+  .contPeriodo {
+    -ms-grid-columns: 25% 25% 25% 25%;
+    grid-template-columns: 25% 25% 25% 25%;
+    -ms-grid-rows: auto;
+    grid-template-rows: auto; }
+  #sietedos {
+    -ms-grid-column: 3;
+    grid-column: 3;
+    -ms-grid-row: 1;
+    grid-row: 1; }
+  #ochocuatro {
+    -ms-grid-column: 4;
+    grid-column: 4;
+    -ms-grid-row: 1;
+    grid-row: 1; }
+  .gridButton {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 33% 33% 33%;
+    grid-template-columns: 33% 33% 33%; }
+    .gridButton .action-button {
+      -ms-grid-column: 3;
+      grid-column: 3; } }

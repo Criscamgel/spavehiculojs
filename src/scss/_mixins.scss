@@ -7,7 +7,7 @@
 // Small devices (landscape phones, 576px and   up)
 
 @mixin smallTablet(){
-    @media (min-width: #{$small}) and (max-width: #{$Atablet}){
+    @media (min-width: #{$small}) and (max-width: #{$Afull}){
         @content;
     }
 }

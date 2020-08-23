@@ -128,8 +128,9 @@
                                     </span>                                        
 
                                     <hr>
-
-                                    <input type="button" name="next" class="next action-button" value="CONTINUAR &#9658;" ng-disabled="!contact.OtrosDatos.ValorFinanciar || contact.OtrosDatos.ValorFinanciar < min || !cuotas || !cuota || cuota == 0"/>
+                                    <div class="gridButton" [ngClass]="{next: contact.OtrosDatos.ValorFinanciar || !contact.OtrosDatos.ValorFinanciar < min || cuotas || cuota || cuota != 0}">
+                                        <input type="button" name="next" class="action-button" value="CONTINUAR &#9658;" ng-disabled="!contact.OtrosDatos.ValorFinanciar || contact.OtrosDatos.ValorFinanciar < min || !cuotas || !cuota || cuota == 0"/>
+                                    </div>
                                 
                                 </fieldset>
 
@@ -137,21 +138,13 @@
                                 <fieldset class="animated fadeIn">
 
                                         <div class="contTitulo previous">
-                                            <i id="iArrowLeft" class="fa fa-angle-left" aria-hidden="true"></i>
+                                            <i id="iArrowLeft" class="fa fa-angle-left pointer" aria-hidden="true"></i>
                                             <p class="titulo"><strong>Hablemos de tus ingresos</strong></p>
                                         </div>
                                         <hr>
 
                                         
-                                        <div class="contField">
-                                            <div ng-show="contactForm.ingresos.$touched && contactForm.ingresos.$invalid">
-                                                <small class="error">Inserta tus ingresos mensuales</small>
-                                            </div>
-                                            <div ng-show="contactForm.ingresos.$error.min || contact.DatosFinancieros.IngresoMensual < min">
-                                                <small class="error">El valor minimo a financiar es de {{min | currency:"$ ":0}}</small>
-                                            </div>
-                                            </div>
-                                            
+                                                                                    
                                             <div class="contField">
                                             <span class="fs-subtitle">¿Cómo te llamas?<u class="asRed">*</u></span>
                                             <input type="text" name="name" placeholder="Ingresa tus nombres y apellidos" ng-model="contact.DatosBasicos.Nombre1" ng-required="true" ng-minlength="3" ng-maxlength="20" replace="[^a-zA-Z\s]" with=""/>
@@ -183,9 +176,9 @@
                                             
                                             <div class="contField">
                                             <span class="fs-subtitle">Teléfono de contacto<u class="asRed">*</u></span>
-                                            <input type="number" name="phone" placeholder="Ingresa tu número" ng-model="contact.DatosBasicos.Celular" ng-required="true" ng-minlength="7" ng-maxlength="10" ng-pattern="/^[0-9]{1,10}$/"/>
+                                            <input type="number" name="phone" placeholder="Ingresa tu número" ng-model="contact.DatosBasicos.Celular" ng-required="true" ng-minlength="7" ng-maxlength="10" ng-pattern="/^3+[0-9]{0,10}$/"/>
                                             <div ng-show="contactForm.phone.$touched && contactForm.phone.$invalid || contactForm.phone.$error.minlength || contactForm.phone.$error.maxlength || contactForm.phone.$error.pattern">
-                                                <small class="error">Ingresa un teléfono válido</small>
+                                                <small class="error">Ingresa un número de celular válido</small>
                                             </div>
                                             </div>
                                             
@@ -214,13 +207,13 @@
                                             <div class="contField">
                                                 <span class="fs-subtitle">Ingresos Mensuales<u class="asRed">*</u></span>
                                                 <span class="input-peso left">
-                                                    <input id="ingresos" type="text" name="ingresos" placeholder="Ingresa el valor" ng-model="contact.DatosFinancieros.IngresoMensual" ng-required="true" currency-input/>
+                                                    <input id="ingreso" type="text" name="ingreso" placeholder="Ingresa el valor" ng-model="contact.DatosFinancieros.IngresoMensual" ng-required="true" currency-input/>
                                                 </span>
                                                 <div ng-show="contactForm.ingresos.$touched && contactForm.ingresos.$invalid">
                                                     <small class="error">Inserta tus ingresos mensuales</small>
                                                 </div>
-                                                <div ng-show="contactForm.ingresos.$error.min || contact.DatosFinancieros.IngresoMensual < min">
-                                                    <small class="error">Ingresa un valor dentro del rango</small>
+                                                <div ng-show="contactForm.ingreso.$error.minv || contact.DatosFinancieros.IngresoMensual < minv">
+                                                    <small class="error">Debes diligenciar un calor mayor a {{minv | currency:"$ ":0}}</small>
                                                 </div>
                                             </div>
                         
@@ -243,7 +236,7 @@
                                                         ng-model="checkTyc" 
                                                         ng-change="contact.OtrosDatos.AutorizaConsultaCentrales = checkTyc; contact.OtrosDatos.AutorizaMareigua = checkTyc;">
 
-                                                <div class="texto"><strong>Acepto los <u class="linkU" ng-click="modal=true" ng-required="true">Términos y Condiciones</u></strong></div>
+                                                <div class="texto"><strong>Acepto los <u class="linkU pointer" ng-click="modal=true" ng-required="true">Términos y Condiciones</u></strong></div>
                                             </div>
 
                                             <div class="tycInput">
@@ -252,10 +245,10 @@
                                                         ng-model="checkCyp" 
                                                         ng-change="contact.OtrosDatos.AutorizaConsultaCentrales = checkTyc; contact.OtrosDatos.AutorizaMareigua = checkTyc;">
 
-                                                <div class="texto"><strong>Acepto las <u class="linkU" ng-click="modalDos=true" ng-required="true">condiciones de privacidad</u></strong></div>
+                                                <div class="texto"><strong>Acepto las <u class="linkU pointer" ng-click="modalDos=true" ng-required="true">condiciones de privacidad</u></strong></div>
                                             </div>
 
-                                        <input type="submit" name="next" class="next action-button" value="SOLICITAR &#9658;" ng-disabled="contactForm.ingresos.$invalid || contactForm.ocupacion.$invalid || contactForm.financiar.$invalid || contactForm.ingresos.$invalid || contact.OtrosDatos.ValorFinanciar < minv || contact.DatosFinancieros.IngresoMensual < min"/>
+                                        <input type="submit" name="next" class="next action-button" value="SOLICITAR &#9658;" ng-disabled="contactForm.ingreso.$invalid || contactForm.ocupacion.$invalid || contactForm.financiar.$invalid || contact.OtrosDatos.ValorFinanciar < minv || contact.DatosFinancieros.IngresoMensual < min || !checkTyc || !checkCyp"/>
                                 
                                     
                                 </fieldset>
@@ -268,8 +261,8 @@
                                     <div class="aprobado" ng-if="resultado == 3 || resultado == 2">
                                     <img src="assets/aprobado.png" alt="">
                                         <div class="textres">
-                                            <p class="titleAprobe">¡Tu solicitud es viable!</p><br>
-                                            <p class="tRes">En menos de 24 horas uno de nuestros asesores se comunicará contigo para continuar tu solicitud de crédito</p>
+                                            <p class="titleAprobe">¡Tu crédito es viable!</p><br>
+                                            <p class="tRes">Pronto uno de nuestros asesores te llamara para acompañarte hasta que tengas tu vehículo. Estas a una llamada de tener carro ya</p>
                                         </div>
                                     </div>
 
@@ -279,7 +272,7 @@
                                         <img src="assets/negado.png" alt="">
                                         <hr>
                                         <div class="textdos">
-                                            <p class="titleNega">¡Tu solicitud ha sido rechazada!</p>
+                                            <strong><p class="titleNega">¡Tu solicitud ha sido rechazada!</p></strong>
                                             <p class="tRes">Uno de nuestros asesores se comunicarán contigo para explorar alternativas</p>
                                         </div>
                                         <hr>
@@ -291,20 +284,22 @@
                             </form>
                         </div><!-- Container Form -->
                         <div class="containerModal" ng-show="modal">
-                                <!-- <h3 class="titleModal"><i id="iArrowLeftm" ng-click="modal=false" class="fa fa-angle-left" aria-hidden="true"></i> Términos y condiciones</h3> -->
+                    
                                 <div class="contTitulo">
-                                    <i id="iArrowLeft" class="fa fa-angle-left" aria-hidden="true" ng-click="modal = false"></i>
-                                    <p class="titulo"><strong>Términos y condiciones</strong></p>
+                                    <i id="iArrowLeft" class="fa fa-angle-left pointer" aria-hidden="true" ng-click="modal = false"></i>
+                                    <p class="titulo"><strong>Términos y condiciones portal</strong></p>
                                 </div>
                                 <hr>
                                 <div class="btnTyc">
                                     <div class="squareModal">
-                                        <p>Por medio de la presente manifiesto que he (hemos) leído y acepto (amos) los términos
-                                                y condiciones a continuación descritos para la solicitud del producto:</p><br/><br/>
-                                        <Strong>Consulta a centrales de riesgo y bases de datos</Strong><br/><br/>
-                                        <p>Autorizo(amos) de manera expresa e irrevocable a Premier Credit (indistintamente “Premier Credit” o “Premier”), y a quien represente sus derechos o a sus sucesores a cualquier título a: 1. Reportar, procesar, solicitar y divulgar a cualquier Operador de bases de datos e información financiera, crediticia, comercial, de servicios y proveniente de terceros países, toda la información referente a mi (nuestro) comportamiento como cliente(s) o prospecto de clientes de Premier Credit, de conformidad con los reglamentos a los cuales se sujeten las entidades antes mencionadas y la normatividad vigente sobre bases de datos. 2. Consultar ante cualquier Operador de bases de datos e información financiera, crediticia, comercial, de servicios y proveniente de terceros países mi (nuestro) endeudamiento directo o indirecto con las entidades financieras del país así como la información disponible sobre el cumplimiento o manejo dado a mis (nuestros) compromisos y obligaciones con dicho sector. 3. Conservar, tanto en Premier Credit, como en los Operadores de bases de datos e información financiera, crediticia, comercial, de servicios y proveniente de terceros países, con las debidas actualizaciones y durante el periodo necesario señalado en las disposiciones legales o en sus reglamentos, la información indicada en los numerales (1) y (2) anteriores. 4. Suministrar a cualquier Operador de bases de datos e información financiera, crediticia, comercial, de servicios y proveniente de terceros países, información relativa a mis (nuestras) solicitud(es) de crédito así como datos atinentes a mis (nuestras) relaciones comerciales, financieras y en general socioeconómicas que haya(mos) entregado o que consten en registros públicos, bases de datos públicas o documentos públicos. 5. Suministrar toda la información consultada y almacenada por Premier Credit, a quien represente sus derechos o a sus sucesores a cualquier título, a las matrices, filiales o subordinadas de la matriz y demás entidades vinculadas con el mismo grupo, así como a terceros para fines comerciales. Declaro(amos) que conozco(conocemos) y acepto(amos) que los reportes negativos que Premier Credit, a cualquier título realice a cualquier Operador de bases de datos e información financiera, crediticia, comercial, de servicios y proveniente de terceros países, pueden generar consecuencias negativas en su acceso al crédito y demás servicios financieros, así como conozco(conocemos) el derecho que me(nos) asiste de solicitar rectificación y actualización de la información cuando esta no corresponda con la realidad crediticia, sin que tal derecho implique revocatoria alguna de las autorizaciones que se confieren a Premier Credit. <p>
-                                        <Strong>Consulta a Mareigua Ltda. </Strong><br/><br/>
-                                        <p>Entiendo(emos) y acepto(amos) que Premier Credit (en adelante Premier), aliado en el proceso de crédito de vehículo, informa que tiene publicadas sus políticas de recolección, uso, y administración de la información personal en la página www.premiercredit.co El o los titulares de la información personal informan a Premier que en desarrollo de los pagos efectuados de aportes al Sistema de Protección Social, en desarrollo de la autoliquidación y pagos o de la liquidación por parte de un eventual empleador, han entregado su información personal al diligenciar la Planilla Integrada de Liquidación de Aportes -PILA- información relacionada con los ingresos mensuales base de cotización, pagos a través del PILA y otros datos financieros. Con base en lo anterior, el (los) titular(es)de la información confiere(n) autorización a Premier para tratar su información personal, recolectar, transferir, almacenar, usar, circular, suprimir, compartir, actualizar, y transmitir la información personal con los siguientes fines: 1) Análisis de riesgos financieros, para ofrecimiento de productos financieros; 2) Para el procesamiento de la información y con el resultado, se entreguen reportes a los establecimientos de crédito aliados de Premier para que se analice y decida sobre el otorgamiento de productos financieros; 3) Para recolectar datos personales, consultarlos, procesarlos, divulgarlos y mantenerlos, en cualquier operador de base de datos. Se reconoce y acepta que los datos objeto de tratamiento, pueden llegar a quedar alojados fuera de Colombia, en virtud de contratos o procesamiento de tal información con responsables de tal manejo fuera de Colombia, caso en el cual Premier entregará información bajo la existencia de un contrato y a responsables ubicados en países con un nivel de protección de datos similar o superior al existente en Colombia. Se deja expresa constancia que la presente autorización puede ser revocada por el usuario y titular de la información personal, en la medida que se cumplan los requisitos legales para tal revocatoria. Lo anterior se encuentra de conformidad con la Ley 1581 de 2012. </p>
+                                        <p> SANTANDER CONSUMER S.A.S. utilizará la información personal del solicitante recopilada a través de este portal, con la finalidad de poder realizar el estudio crediticio del mismo para la determinación de la aprobación o no del crédito.<br/><br/>
+                                            El otorgamiento de los planes de financiación anunciados así como las tasas ofrecidas, están sujetas al cumplimiento de las políticas de crédito de las entidades financieras aliadas de Santander Consumer y al perfil crediticio del solicitante.<br/><br/>
+                                            Si el solicitante no está de acuerdo con estos Términos y Condiciones, o si el usuario es menor de 18 años no deberá hacer uso de este portal.<br/><br/>
+                                            El titular (solicitante) de la información entregada a través del Portal, autoriza a Santander Consumer a consultar, reportar y compartir información para: a) Realizar consultas, solicitudes y reportes de toda la información de comportamiento crediticio ante cualquiera de los operadores de información financiera. Así mismo, Santander Consumer queda autorizado para obtener información sobre relaciones comerciales del titular con otras entidades y consultar sus reportes ante las centrales de información; para ello se autoriza de manera expresa, previa e irrevocable a Santander Consumer a realizar ante cualquier operador de centrales de información, entre ellos Cifín o Datacrédito, cualquier operación o tratamiento efectuado sobre la información y los datos entregados, tanto de la empresa, como de sus representantes o directivos, incluyendo la consulta, solicitud, suministro, reporte, procesamiento y divulgación de toda la información relacionada con el comportamiento crediticio del titular, el origen de las obligaciones a su cargo, cualquier novedad, modificación, extinción, cumplimiento o incumplimiento de obligaciones y b) se autoriza a compartir la información a entidades pertenecientes o vinculadas al Grupo Santander, así como a Casa Editorial El tiempos S.A. y sus aliados, para ofrecer al Titular otros productos o servicios financieros, comerciales o para realizar gestiones de mercadeo.<br/><br/>
+En su condición de responsable o encargado del tratamiento del manejo de datos personales que puede llegar a tener Santander Consumer, el titular autoriza para efectos de la Ley Estatutaria de Protección de Datos Personales (Ley 1581 de 2012) o de la norma que la reemplace o sustituya, en concordancia con la Ley Estatutaria 1266 de 2008, por la cual se dictaron disposiciones generales del hábeas data y se reguló el manejo de información contenida en bases de datos personales, en especial la información financiera, crediticia y comercial, de servicios y la proveniente de terceros países, a: (i) Recolectar, obtener, compilar, ofrecer, vender, intercambiar, enviar, divulgar, modificar, emplear, almacenar, procesar, transferir a cualquier título, y, en general, administrar información proveniente del titular de los datos o sus legítimos representantes; de las fuentes de información con las que Santander Consumer celebre convenios o contratos para el efecto; de los registros, documentos o publicaciones a los cuales haya tenido acceso Santander Consumer; de otros bancos de datos o archivos de información cuyo objeto sea o no similar al de Santander Consumer; de autoridades públicas, nacionales o internacionales, que administren o lleven registros del cumplimiento e incumplimiento de obligaciones fiscales, parafiscales, relacionadas con la prevención del lavado de activos o de la financiación del terrorismo y cualquier otra información de carácter público; de bases de información pública y, en general, de cualquier otra permitida por la normatividad aplicable; (ii) Santander Consumer, debidamente autorizado por el titular, podrá suministrar la información que reposa en sus bases de datos a las siguientes personas: a los titulares, a las personas debidamente autorizadas por éstos y a sus causahabientes; a las entidades financieras aliadas de Santander Consumer; a los usuarios de la información, dentro de los parámetros de la ley, de los contratos o convenios suscritos por Santander Consumer; a cualquier autoridad judicial, del poder ejecutivo o administrativa u órganos de control; a operadores de datos, de acuerdo con la normatividad vigente, y, en general a las demás personas autorizadas por la ley; (iii) Para efectos de soportes operativos, de procesamiento de información o tecnológicos, Santander Consumer queda expresamente autorizado, para compartir la información con empresas dedicadas a labores de “outsourcing” o prestación de servicios soportes para entidades financieras, dentro o fuera de Colombia, autorizando el Titular la divulgación, suministro y cesión de la información, para cuyo efectos Santander Consumer podrá recolectar, obtener, compilar, ofrecer, vender, intercambiar, enviar, divulgar, modificar, emplear, almacenar, procesar, transferir a cualquier título y, en general, hacer todo lo que implica la administración de información para terceros, dentro o fuera de Colombia. Cuando se haga entrega o cesión de información a otros países, se realizará con observancia de la legislación colombiana y las instrucciones de las autoridades correspondientes en la materia.<br/><br/>
+Entiendo y acepto que Santander Consumer tenga publicadas sus políticas de recolección, uso, y administración de la información personal en la página www.santanderconsumer.co
+                                        </p>
+                                        
                                     </div>
                                     <input class="buttonModal" type="button" value="ACEPTAR" ng-click="modal=false; checkTyc=true"/>
                                 </div>            
@@ -313,25 +308,60 @@
                         <div class="containerModal" ng-show="modalDos">
                             <!-- <h3 class="titleModal"><i id="iArrowLeftm" ng-click="modal=false" class="fa fa-angle-left" aria-hidden="true"></i> Términos y condiciones</h3> -->
                             <div class="contTitulo">
-                                <i id="iArrowLeft" class="fa fa-angle-left" aria-hidden="true" ng-click="modalDos=false"></i>
+                                <i id="iArrowLeft" class="fa fa-angle-left pointer" aria-hidden="true" ng-click="modalDos=false"></i>
                                 <p class="titulo"><strong>Condiciones de privacidad</strong></p>
                             </div>
                             <hr>
                             <div class="btnTyc">
                                 <div class="squareModal">
-                                    <p>Por medio de la presente manifiesto que he (hemos) leído y acepto (amos) los términos
-                                            y condiciones a continuación descritos para la solicitud del producto:</p><br/><br/>
-                                    <Strong>Consulta a centrales de riesgo y bases de datos</Strong><br/><br/>
-                                    <p>Autorizo(amos) de manera expresa e irrevocable a Premier Credit (indistintamente “Premier Credit” o “Premier”), y a quien represente sus derechos o a sus sucesores a cualquier título a: 1. Reportar, procesar, solicitar y divulgar a cualquier Operador de bases de datos e información financiera, crediticia, comercial, de servicios y proveniente de terceros países, toda la información referente a mi (nuestro) comportamiento como cliente(s) o prospecto de clientes de Premier Credit, de conformidad con los reglamentos a los cuales se sujeten las entidades antes mencionadas y la normatividad vigente sobre bases de datos. 2. Consultar ante cualquier Operador de bases de datos e información financiera, crediticia, comercial, de servicios y proveniente de terceros países mi (nuestro) endeudamiento directo o indirecto con las entidades financieras del país así como la información disponible sobre el cumplimiento o manejo dado a mis (nuestros) compromisos y obligaciones con dicho sector. 3. Conservar, tanto en Premier Credit, como en los Operadores de bases de datos e información financiera, crediticia, comercial, de servicios y proveniente de terceros países, con las debidas actualizaciones y durante el periodo necesario señalado en las disposiciones legales o en sus reglamentos, la información indicada en los numerales (1) y (2) anteriores. 4. Suministrar a cualquier Operador de bases de datos e información financiera, crediticia, comercial, de servicios y proveniente de terceros países, información relativa a mis (nuestras) solicitud(es) de crédito así como datos atinentes a mis (nuestras) relaciones comerciales, financieras y en general socioeconómicas que haya(mos) entregado o que consten en registros públicos, bases de datos públicas o documentos públicos. 5. Suministrar toda la información consultada y almacenada por Premier Credit, a quien represente sus derechos o a sus sucesores a cualquier título, a las matrices, filiales o subordinadas de la matriz y demás entidades vinculadas con el mismo grupo, así como a terceros para fines comerciales. Declaro(amos) que conozco(conocemos) y acepto(amos) que los reportes negativos que Premier Credit, a cualquier título realice a cualquier Operador de bases de datos e información financiera, crediticia, comercial, de servicios y proveniente de terceros países, pueden generar consecuencias negativas en su acceso al crédito y demás servicios financieros, así como conozco(conocemos) el derecho que me(nos) asiste de solicitar rectificación y actualización de la información cuando esta no corresponda con la realidad crediticia, sin que tal derecho implique revocatoria alguna de las autorizaciones que se confieren a Premier Credit. <p>
-                                    <Strong>Consulta a Mareigua Ltda. </Strong><br/><br/>
-                                    <p>Entiendo(emos) y acepto(amos) que Premier Credit (en adelante Premier), aliado en el proceso de crédito de vehículo, informa que tiene publicadas sus políticas de recolección, uso, y administración de la información personal en la página www.premiercredit.co El o los titulares de la información personal informan a Premier que en desarrollo de los pagos efectuados de aportes al Sistema de Protección Social, en desarrollo de la autoliquidación y pagos o de la liquidación por parte de un eventual empleador, han entregado su información personal al diligenciar la Planilla Integrada de Liquidación de Aportes -PILA- información relacionada con los ingresos mensuales base de cotización, pagos a través del PILA y otros datos financieros. Con base en lo anterior, el (los) titular(es)de la información confiere(n) autorización a Premier para tratar su información personal, recolectar, transferir, almacenar, usar, circular, suprimir, compartir, actualizar, y transmitir la información personal con los siguientes fines: 1) Análisis de riesgos financieros, para ofrecimiento de productos financieros; 2) Para el procesamiento de la información y con el resultado, se entreguen reportes a los establecimientos de crédito aliados de Premier para que se analice y decida sobre el otorgamiento de productos financieros; 3) Para recolectar datos personales, consultarlos, procesarlos, divulgarlos y mantenerlos, en cualquier operador de base de datos. Se reconoce y acepta que los datos objeto de tratamiento, pueden llegar a quedar alojados fuera de Colombia, en virtud de contratos o procesamiento de tal información con responsables de tal manejo fuera de Colombia, caso en el cual Premier entregará información bajo la existencia de un contrato y a responsables ubicados en países con un nivel de protección de datos similar o superior al existente en Colombia. Se deja expresa constancia que la presente autorización puede ser revocada por el usuario y titular de la información personal, en la medida que se cumplan los requisitos legales para tal revocatoria. Lo anterior se encuentra de conformidad con la Ley 1581 de 2012. </p>
+                                    <p><strong>AVISO PRIVACIDAD DE CEET</strong>
+
+                                        Los mecanismos a través de los cuales hacemos uso de éstos son seguros y confidenciales, pues contamos con los medios tecnológicos idóneos para asegurar que sean almacenados de manera tal que se impida el acceso indeseado por parte de terceras personas y, en ese mismo orden, aseguramos la confidencialidad de los mismos.<br/>
+                                        
+                                        Los Datos Personales que CEET solicita serán utilizados para los siguientes fines:<br/><br/>
+                                        1. Sus Datos Personales serán incluidos en una o más bases de datos y podrán ser transmitidos y/o transferidos entre CEET, sus subordinadas vinculadas, su matriz o controlante, las subordinadas de su matriz o controlante, (en adelante “Las Entidades Autorizadas”), para que directamente o a través de terceros, traten los Datos Personales de acuerdo con los fines establecidos en el presente aviso. De igual forma, las bases de datos de CEET podrán incluir e integrar datos transmitidos y/o transferidos a ésta por las Entidades Autorizadas y/o por terceros.<br/><br/>
+                                        
+                                        2. Lograr una eficiente comunicación con el Titular de la información, a través de cualquier medio de contacto, relacionada con nuestros productos, servicios, promociones, alianzas, estudios, concursos, eventos, contenidos, campañas publicitarias y de mercadeo, beneficios, condiciones o políticas aplicables, canales de atención, redes sociales, así como los de Las Entidades Autorizadas.<br/><br/>
+                                        
+                                        3. Proveer nuestros servicios y/o productos.<br/><br/>
+                                        
+                                        4. Informar sobre cambios de nuestros productos o servicios o respecto de los nuevos que estén relacionados con el o los contratado(s) o adquirido(s).<br/><br/>
+                                        
+                                        5. Dar cumplimiento a las obligaciones contraídas con nuestros clientes, proveedores y empleados.<br/><br/>
+                                        
+                                        6. Evaluar la calidad del servicio.<br/><br/>
+                                        
+                                        7. Entregar y ofrecer al Titular de forma general o segmentada, información, contenido y/o publicidad, de CEET, las Entidades Autorizadas y/o de terceros, y calificar la propensión y/o afinidad a productos o servicios de CEET y/o de Las Entidades Autorizadas y/o de terceros para realizar segmentaciones o perfilamiento de usuarios.<br/><br/>
+                                        
+                                        8. Elaborar y reportar información estadística, encuestas de satisfacción, estudios y análisis de mercado o de consumo, incluyendo la posibilidad de contactarlo para dichos propósitos por parte de CEET y/o Las Entidades Autorizadas.<br/><br/>
+                                        
+                                        9. La información podrá ser anonimizada con el fin de elaborar estadísticas, estudios y análisis de mercadeo o de consumo que podrán ser utilizados por las Entidades Autorizadas y/o terceros, quienes podrán disponer discrecionalmente de la totalidad de la información.<br/><br/>
+                                        
+                                        10. Identificar, recolectar y asociar a los datos, información sobre preferencias de navegación del titular en los portales de CEET y/o de Las Entidades Autorizadas, así como datos de georreferenciación o y/o ubicación específica que generen dispositivos móviles, para mejorar la experiencia del usuario, conocer su perfil de navegación, entregar información y/o publicidad segmentada sobre productos y/o servicios propios o de terceros, calificar la propensión y/o afinidad a productos o servicios de CEET y/o de Las Entidades Autorizadas y/o de terceros. Para mayor detalle, ver Política de Datos de Navegación- “Cookies”.<br/><br/>
+                                        
+                                        11. Identificar, recolectar y asociar a los datos, información sobre sus hábitos de compra o intereses y compartirlos con Las Entidades Autorizadas y/o terceros, tales como: la asistencia a eventos públicos o privados de CEET y/o Las Entidades Autorizadas; la redención o uso de promociones a las cuales haya tenido acceso por ser cliente de CEET y/o Las Entidades Autorizadas; el uso de la tarjeta del Club Vivamos El Tiempo y/o similares de marca compartida; el uso de redes sociales, en donde siga o sea seguido, o haya generado una interacción con CEET y/o Las Entidades Autorizadas.<br/><br/>
+                                        
+                                        12. Transmitirlos, dentro o fuera de Colombia (sin consideración al país de destino), a terceros que actúen como encargados del tratamiento y que provean a CEET y/o Las Entidades Autorizadas, servicios tecnológicos, logísticos, administrativos, de distribución, e-mail marketing, contact center y/o cualquier otro servicio que requiera CEET y/o Las Entidades Autorizadas, para el desarrollo de las actividades contempladas en las finalidades previstas en este Aviso de Privacidad y siempre sujeto a las Políticas de Tratamiento y Procedimiento de Datos Personales de CEET. En consecuencia, el titular entiende y acepta que mediante la presente autorización concede a los encargados del tratamiento, autorización para acceder a sus Datos Personales en la medida en que así lo requieran para la prestación de los servicios para los cuales fueron contratados.<br/><br/>
+                                        
+                                        13. Transferirlos, dentro o fuera de Colombia (sin consideración al país de destino), a Las Entidades Autorizadas y/o terceros, para el desarrollo de actividades comerciales y las contempladas en las finalidades descritas en este Aviso de Privacidad.<br/><br/>
+                                        
+                                        14. Transferirlos y/o transmitirlos dentro o fuera de Colombia (sin consideración al país de destino), a la(s) compañía que a futuro pueda(n) administrar y/o adquirir, total o parcialmente, a CEET y/o una de las Entidades Autorizadas o alguno de las unidades de negocios o activos de estas.<br/><br/>
+                                        
+                                        15. Recolección y entrega de información ante autoridades públicas o privadas, nacionales o extranjeras con competencia sobre CEET y/o Las Entidades Autorizadas, o sobre sus actividades, productos y/o servicios, cuando se requiera para dar cumplimiento a sus deberes legales o reglamentarios, incluyendo dentro de éstos, aquellos referentes a la prevención de la evasión fiscal, lavado de activos y financiación del terrorismo u otros propósitos similares.<br/><br/>
+                                        
+                                        16. Hacer perfilamientos de bases de datos o generar perfiles básicos y demográficos con los Datos Personales, así como completitud de datos de contacto mediante el cruce de bases de datos de CEET, Las Entidades Autorizadas y/o terceros tales como la Registraduría Nacional del Estado Civil y sus aliados tecnológicos certificados, operadores de información comercial o crediticia, entidades que formen parte del Sistema de Seguridad Social Integral, empresas prestadoras de servicios públicos, con miras a enriquecer las bases de datos de CEET y/o de las Entidades Autorizadas.<br/><br/>
+                                        
+                                        En relación con datos considerados como Sensibles, en los términos de la Ley 1581 de 2012, el Titular no está obligado a autorizar su Tratamiento. Respecto de Datos Personales de Niños, Niñas y Adolescentes, cuando se recolecten, se tratarán de acuerdo con lo establecido en el artículo 7 de la Ley 1581 de 2013 y el artículo 12 del Decreto 1377 de 2013, y según las finalidades establecidas en este Aviso de Privacidad en lo que puedan ser aplicables.<br/><br/>
+                                        
+                                        Se le informa a los Titulares que pueden consultar la Política de Tratamiento y Procedimientos de Datos Personales de CEET, que contiene nuestras políticas para el tratamiento de la información recogida, así como los procedimientos de consulta y reclamación que le permitirán hacer efectivos sus derechos al acceso, consulta, rectificación, actualización y supresión de los datos,<br/>
+                                        haciendo click en aquí en <a href="https://www.eltiempo.com/legal/20130412_HABEAS_DATA_Manual_Interno_CEET.pdf">Manual Interno CEET.pdf</a></p>
                                 </div>
-                                <input class="buttonModal" type="button" value="ACEPTAR" ng-click="modal=false; checkTyc=true"/>
+                                <input class="buttonModal" type="button" value="ACEPTAR" ng-click="modalDos=false; checkCyp=true"/>
                             </div>            
                         </div>
                         
                         </div>                                                    
-                            <div class="pieImagen">
+                            <div class="pieImagen noBig">
                                 <img src="assets/santander.png" alt="">
                             </div>
                                 <div class="pie">

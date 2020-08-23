@@ -51,7 +51,7 @@ var ingreso;
         $scope.modal = false;
         $scope.modalDos = false;
         $scope.min = 20000000;
-        $scope.minv = 10000000;
+        $scope.minv = 1200000;
 
         $scope.cuota = 0;
         $scope.tasa = 0.01;
@@ -129,31 +129,18 @@ var ingreso;
 
                  
                 let valorFinanciarCop = $scope.contact.OtrosDatos.ValorFinanciar
-                console.log(valorFinanciarCop);
-                
+                          
                 let nmv = Math.pow((1 + $scope.tasa), (1 / 12)) - 1;
                 var seguroCuota = (1200 / 1000000) * valorFinanciarCop;
-                let cuota = Number(val);                
-                /* 
-                
-                if (val !== undefined) {
-              
-                  if (val.value !== undefined) {
-                    cuota = Number(val.value);
-                  } else {
-                    cuota = Number(val);
-                  }
-              
-                } */
+                let cuota = Number(val);
 
                 var seguroTotal = Math.round(seguroCuota * cuota);
-                console.log(seguroTotal);
                 var vlrActual = Math.round(valorFinanciarCop);
                 var vlrPartuno = vlrActual * nmv;
                 var vlrPartdos = Math.pow((1 + nmv), - cuota)
                 vlrPartdos = 1 - vlrPartdos;
                 $scope.cuota = Math.round(vlrPartuno / vlrPartdos);
-                console.log($scope.cuota);                
+                              
                 
                 /* Seguro de la cuota */
                 var vlrPartunoSeg = seguroTotal * nmv;

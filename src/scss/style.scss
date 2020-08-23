@@ -284,6 +284,7 @@ button:disabled, input[type=submit]:disabled{
     }
 }
 
+
 /* Contenedor Stepper */
 .containerLine{
     margin-top: 15px;
@@ -530,6 +531,96 @@ input:disabled + div {
 
 form{
     width: 100%;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.aprobado, .negado{
+    img{
+        width: 100%;
+    }
+    .textres{
+        margin: 5px 0;
+        text-align: center;
+        font-size: 14px;
+        .titleAprobe{
+            color: green;
+        }
+    }
+}
+
+.negado{
+    .textdos{
+        margin: 15px 0;
+        text-align: center;
+        font-size: 14px;
+        .titleNega{
+            color: red;
+        }
+    }
+}
+
+/* Tablet */
+
+@media only screen and (min-width: 576px) {
+    .contenedor{
+        grid-template-columns: 25% 50% 25%;
+    }
+    .headerSuperior{
+        grid-template-columns: 25% 50% 25%;
+        .brands{ 
+        .logoSantader{
+                    width: 45%;
+            }
+        }
+    }
+
+    /* Fondo */
+    body{
+        background-image: url(../../assets/fondo.png);
+        background-repeat: no-repeat;
+        background-position: top center;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    fieldset{
+        background-color: rgba(255, 255, 255, 0.84);
+    }
+
+    .pie{
+        small{
+            color: white;
+        }
+    }
+    .noBig{
+        display: none;
+    }
+
+    .contPeriodo{
+        grid-template-columns: 25% 25% 25% 25%;
+        grid-template-rows: auto;
+    }
+
+    #sietedos{
+        grid-column: 3;
+        grid-row: 1;
+    }
+
+    #ochocuatro{
+        grid-column: 4;
+        grid-row: 1;
+    }
+
+    .gridButton{
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+        .action-button{
+            grid-column: 3;
+        }
+    }
 }
 
 
