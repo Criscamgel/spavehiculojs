@@ -76,6 +76,10 @@ var ingreso;
         let urlV = "https://api.premiercredit.co:11445/PremierServices_API_EXT_TST/api/viabilizacion/getviabilizacion"
 
         let bodyV = $scope.contact;
+
+        $scope.desabilitarBtnPrimerPaso = function(){
+            return !$scope.contact.OtrosDatos.ValorFinanciar || $scope.contact.OtrosDatos.ValorFinanciar < $scope.min || !$scope.cuotas || !$scope.cuota || $scope.cuota == 0;
+        }
                
         $scope.submitForm = function(){
 

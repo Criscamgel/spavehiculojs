@@ -128,8 +128,8 @@
                                     </span>                                        
 
                                     <hr>
-                                    <div class="gridButton" [ngClass]="{next: contact.OtrosDatos.ValorFinanciar || !contact.OtrosDatos.ValorFinanciar < min || cuotas || cuota || cuota != 0}">
-                                        <input type="button" name="next" class="action-button" value="CONTINUAR &#9658;" ng-disabled="!contact.OtrosDatos.ValorFinanciar || contact.OtrosDatos.ValorFinanciar < min || !cuotas || !cuota || cuota == 0"/>
+                                    <div class="gridButton">
+                                        <input type="button" name="next" class="next action-button" value="CONTINUAR &#9658;" ng-disabled="desabilitarBtnPrimerPaso()"/>
                                     </div>
                                 
                                 </fieldset>
@@ -154,7 +154,7 @@
                                             </div>
                                             
                                             <div class="contField dosCol">
-                                            <div>
+                                            <div class="parteUno">
                                                 <span class="fs-subtitle">Tipo de identificación<u class="asRed">*</u></span>
                                                 <select name="selDocumento" ng-model="contact.DatosBasicos.TipoDocumento" ng-selected="stringToNumber()" ng-required="true">
                                                         <option value="" disabled selected>Selecciona tu tipo de Identificación</option>
@@ -165,7 +165,8 @@
                                                     <small class="error">Ingresa un tipo de documento válido</small>
                                                 </div>
                                             </div>
-                                            <div>
+
+                                            <div class="parteDos">
                                                 <span class="fs-subtitle">Número de identificación<u class="asRed">*</u></span>
                                                 <input type="number" name="id" placeholder="Ingresa tu número de identificación" ng-model="contact.DatosBasicos.NumeroDocumento" ng-required="true" ng-pattern="/^[0-9]{1,11}$/" ng-minlength="6" ng-maxlength="11"/>
                                                 <div ng-show="contactForm.id.$touched && contactForm.id.$invalid || contactForm.id.$error.minlength || contactForm.id.$error.maxlength || contactForm.id.$error.pattern">
@@ -229,6 +230,8 @@
                                                 <p class="tyc">PREMIER CREDIT o el TERCERO AUTORIZADO quedan autorizados para obtener información sobre mis relaciones comerciales con otras entidades y consultar mis reportes ante las centrales de información.</p>
                                             </div>                                            
                                         </div>
+
+                                        <div class="contCheckbox">
                                             <div class="tycInput">
                                                 <input 
                                                         type="checkbox" 
@@ -239,7 +242,7 @@
                                                 <div class="texto"><strong>Acepto los <u class="linkU pointer" ng-click="modal=true" ng-required="true">Términos y Condiciones</u></strong></div>
                                             </div>
 
-                                            <div class="tycInput">
+                                            <div class="typInput">
                                                 <input type="checkbox" 
                                                         name="checkTyc" 
                                                         ng-model="checkCyp" 
@@ -247,6 +250,7 @@
 
                                                 <div class="texto"><strong>Acepto las <u class="linkU pointer" ng-click="modalDos=true" ng-required="true">condiciones de privacidad</u></strong></div>
                                             </div>
+                                        </div>
 
                                         <input type="submit" name="next" class="next action-button" value="SOLICITAR &#9658;" ng-disabled="contactForm.ingreso.$invalid || contactForm.ocupacion.$invalid || contactForm.financiar.$invalid || contact.OtrosDatos.ValorFinanciar < minv || contact.DatosFinancieros.IngresoMensual < min || !checkTyc || !checkCyp"/>
                                 
@@ -385,8 +389,8 @@ Entiendo y acepto que Santander Consumer tenga publicadas sus políticas de reco
 <script src='src/js/jquery.min.js'></script>
 <script  src="src/js/angular.min.js"></script>
 <script src='src/js/jquery.easing.min.js'></script>
-<script  src="src/js/script.js"></script>
-<script  src="src/js/controller.js"></script>
 <script src="https://cdn.polyfill.io/v2/polyfill.js?features=fetch"></script>
+<script  src="src/js/controller.js"></script>
+<script  src="src/js/script.js"></script>
 
 </html>
