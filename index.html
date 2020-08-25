@@ -103,7 +103,7 @@
                                     <div class="contField primero">
                                         <span class="fs-subtitle">Cuanto dinero deseas financiar<u class="asRed">*</u></span>
                                             <span class="input-peso left">
-                                                <input type="text" id="valorFinanciar" name="valorFinanciar" placeholder="Ingresa el valor" ng-model="contact.OtrosDatos.ValorFinanciar" ng-required="true" ng-change="reinicioCuota(contact.OtrosDatos.ValorFinanciar)" currency-input/>
+                                                <input type="cel" id="valorFinanciar" name="valorFinanciar" placeholder="Ingresa el valor" ng-model="contact.OtrosDatos.ValorFinanciar" ng-required="true" ng-change="reinicioCuota(contact.OtrosDatos.ValorFinanciar)" currency-input/>
                                             </span>
                                             <div ng-show="contactForm.ValorFinanciar.$touched && contactForm.valorFinanciar.$error.min || contact.OtrosDatos.ValorFinanciar < min">
                                                 <small class="error">El valor minimo a financiar es de {{min | currency:"$ ":0}}</small>

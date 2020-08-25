@@ -8,7 +8,7 @@ var ingreso;
         $scope.age = new Date().getFullYear();
         $scope.reload = function()
         {
-        window.location="https://www.tucarro.com.co/"; 
+        window.location="https://www.carroya.com/"; 
         }
 
         $scope.checkTyc = false;
