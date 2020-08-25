@@ -82,8 +82,6 @@ var ingreso;
         }
                
         $scope.submitForm = function(){
-
-            console.log($scope.contact);
             $scope.contact.DatosBasicos.TipoDocumento = Number($scope.contact.DatosBasicos.TipoDocumento);
             $scope.contact.DatosFinancieros.ActividadEconomica = Number($scope.contact.DatosFinancieros.ActividadEconomica);
 
@@ -92,16 +90,14 @@ var ingreso;
                 body: $.param(bodyT),
                 headers: headerT
                 })
-                .then(function(response) {
-                        console.log(response);                        
-                        response.json();                     
-                    }, //ADDED >JSON() HERE                
+                .then(function(response) {                   
+                        return response.json();                   
+                    },              
                     function(error) 
                     {
-                        console.log('An error occurred.', error)
+                        return console.log('An error occurred.', error)
                     })
-                    .then(function(response){
-                        console.log(response);                        
+                    .then(function(response){                       
                         let token = response.Token;       
 
                         let headerVi = {
@@ -116,13 +112,13 @@ var ingreso;
                     })
                       
                       .then( function(response) {
-                          response.json()}
-                          )
+                          return response.json()
+                        })
                       .then(function(result) {
-                          $scope.resultado = result.IdResultado
+                          return $scope.resultado = result.IdResultado
                         })
                       .catch(function(error) {
-                          console.log('error', error)}
+                          return console.log('error', error)}
                           );                
                    
                   })

@@ -552,6 +552,17 @@ form {
   .negado .textdos .titleNega {
     color: red; }
 
+.noSmallTablet {
+  display: none; }
+
+.contenedorTitulo {
+  text-align: center;
+  margin: 25px 0; }
+  .contenedorTitulo .tituloMedio {
+    color: red; }
+  .contenedorTitulo p {
+    font-size: 10px; }
+
 /* Tablet */
 @media only screen and (min-width: 576px) {
   .contenedor {
@@ -615,7 +626,9 @@ form {
       -ms-grid-column: 2;
       grid-column: 2;
       -ms-grid-row: 1;
-      grid-row: 1; } }
+      grid-row: 1; }
+  .noSmallTablet {
+    display: none; } }
 
 /* Laptop */
 @media only screen and (min-width: 992px) {
@@ -652,4 +665,6 @@ form {
       grid-column: 1; }
     .contCheckbox .typInput {
       -ms-grid-column: 2;
-      grid-column: 2; } }
+      grid-column: 2; }
+  .noSmallTablet {
+    display: block !important; } }

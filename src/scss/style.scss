@@ -562,6 +562,21 @@ form{
     }
 }
 
+.noSmallTablet{
+    display: none;
+}
+
+.contenedorTitulo{
+    text-align: center;
+    margin: 25px 0;
+    .tituloMedio{
+        color: red;
+    }
+    p{
+        font-size: 10px;
+    }
+}
+
 /* Tablet */
 
 @media only screen and (min-width: 576px) {
@@ -640,6 +655,10 @@ form{
         }
         
     }
+
+    .noSmallTablet{
+        display: none;
+    }
 }
 
 /* Laptop */
@@ -687,6 +706,10 @@ form{
         .typInput{
             grid-column: 2;
         }
+    }
+
+    .noSmallTablet{
+        display: block !important;
     }
     
 

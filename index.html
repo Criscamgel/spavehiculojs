@@ -72,7 +72,14 @@
             <div class="contenedor">
                 <div class="margen"></div>
                 <div class="contenido">
-                    <div class="gridBody" ng-controller="formController">                
+                    <div class="gridBody" ng-controller="formController">
+                        
+                        <div class="contenedorTitulo noSmallTablet">
+                            <h4>Conoce si tu crédito es viable  y sin papeles</h4>
+                            <h4 class="tituloMedio">Plan especial, 3 meses de gracia!</h4>
+                            <p>Por tiempo limitado-Aplica condiciones y restricciones</p>
+                        </div>
+                        
                         <div class="containerLine">
                                 <!-- progressbar -->
                                 <ul id="progressbar">
@@ -251,8 +258,9 @@
                                                 <div class="texto"><strong>Acepto las <u class="linkU pointer" ng-click="modalDos=true" ng-required="true">condiciones de privacidad</u></strong></div>
                                             </div>
                                         </div>
-
-                                        <input type="submit" name="next" class="next action-button" value="SOLICITAR &#9658;" ng-disabled="contactForm.ingreso.$invalid || contactForm.ocupacion.$invalid || contactForm.financiar.$invalid || contact.OtrosDatos.ValorFinanciar < minv || contact.DatosFinancieros.IngresoMensual < min || !checkTyc || !checkCyp"/>
+                                        <div class="gridButton">
+                                            <input type="submit" name="next" class="next action-button" value="SOLICITAR &#9658;" ng-disabled="contactForm.ingreso.$invalid || contactForm.ocupacion.$invalid || contactForm.financiar.$invalid || contact.DatosFinancieros.IngresoMensual < minv || !checkTyc || !checkCyp"/>
+                                        </div>
                                 
                                     
                                 </fieldset>
@@ -262,7 +270,7 @@
                                     <p class="titulo"><strong>¡Listo!</strong></p>
                                     <hr>
 
-                                    <div class="aprobado" ng-if="resultado == 3 || resultado == 2">
+                                    <div class="aprobado" ng-show="resultado == 3 || resultado == 2">
                                     <img src="assets/aprobado.png" alt="">
                                         <div class="textres">
                                             <p class="titleAprobe">¡Tu crédito es viable!</p><br>
@@ -272,7 +280,7 @@
 
                                     <hr>
 
-                                    <div class="negado" ng-if="resultado == 1 || resultado == 4">
+                                    <div class="negado" ng-show="resultado == 1 || resultado == 4">
                                         <img src="assets/negado.png" alt="">
                                         <hr>
                                         <div class="textdos">
@@ -281,8 +289,9 @@
                                         </div>
                                         <hr>
                                     </div>
-
-                                    <input type="button" name="submit" class="submit action-button" value="FINALIZAR" ng-click="reload()"/>
+                                    <div class="gridButton">
+                                        <input type="button" name="submit" class="submit action-button" value="FINALIZAR" ng-click="reload()"/>
+                                    </div>
                                 </fieldset>
 
                             </form>
