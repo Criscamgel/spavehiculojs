@@ -64,7 +64,7 @@ var ingreso;
         /* let urlP= "https://apitst.premiercredit.co:11445/premierservices_api_ext_tst/api/login/echoping" */
 
         /* 2 - Token */
-        let urlT= "https://api.premiercredit.co:11445/PremierServices_API_EXT_TST/api/login/authenticate"
+        let urlT= "https://api.premiercredit.co:11444/PremierServices_API_EXT/api/login/authenticate"
         let headerT = {
                         'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
                         'Accept': 'application/json, application/xml, text/plain, text/html, *.*' 
@@ -73,7 +73,7 @@ var ingreso;
         let bodyT = {'Username':$scope.username,'Password':$scope.password}
         
         /* 3 - Viable */
-        let urlV = "https://api.premiercredit.co:11445/PremierServices_API_EXT_TST/api/viabilizacion/getviabilizacion"
+        let urlV = "https://api.premiercredit.co:11444/PremierServices_API_EXT/api/viabilizacion/getviabilizacion"
 
         let bodyV = $scope.contact;
 
