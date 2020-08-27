@@ -260,6 +260,9 @@
                                         </div>
                                         <div class="gridButton">
                                             <input type="submit" name="next" class="next action-button" value="SOLICITAR &#9658;" ng-disabled="contactForm.ingreso.$invalid || contactForm.ocupacion.$invalid || contactForm.financiar.$invalid || contact.DatosFinancieros.IngresoMensual < minv || !checkTyc || !checkCyp"/>
+                                            <script>
+                                                dataLayer.push({'event':'ga_event','category':'Lead','action':'Click','label':'Paso 3','value':''})
+                                            </script>
                                         </div>
                                 
                                     
@@ -291,9 +294,6 @@
                                     </div>
                                     <div class="gridButton">
                                         <input type="button" name="submit" class="submit action-button" value="FINALIZAR" ng-click="reload()"/>
-                                        <script>
-                                            dataLayer.push({'event':'ga_event','category':'Lead','action':'Click','label':'Paso 3','value':''})
-                                        </script>
                                     </div>
                                 </fieldset>
 
