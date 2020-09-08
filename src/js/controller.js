@@ -8,7 +8,7 @@ var ingreso;
         $scope.age = new Date().getFullYear();
         $scope.reload = function()
         {
-        window.location="https://www.tucarro.com.co/"; 
+        window.location="https://www.carroya.com/"; 
         }
 
         $scope.checkTyc = false;
@@ -64,7 +64,7 @@ var ingreso;
         /* let urlP= "https://apitst.premiercredit.co:11445/premierservices_api_ext_tst/api/login/echoping" */
 
         /* 2 - Token */
-        let urlT= "https://api.premiercredit.co:11445/PremierServices_API_EXT_TST/api/login/authenticate"
+        let urlT= "https://api.premiercredit.co:11444/PremierServices_API_EXT/api/login/authenticate"
         let headerT = {
                         'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
                         'Accept': 'application/json, application/xml, text/plain, text/html, *.*' 
@@ -73,13 +73,15 @@ var ingreso;
         let bodyT = {'Username':$scope.username,'Password':$scope.password}
         
         /* 3 - Viable */
-        let urlV = "https://api.premiercredit.co:11445/PremierServices_API_EXT_TST/api/viabilizacion/getviabilizacion"
+        let urlV = "https://api.premiercredit.co:11444/PremierServices_API_EXT/api/viabilizacion/getviabilizacion"
 
         let bodyV = $scope.contact;
+
+        $scope.desabilitarBtnPrimerPaso = function(){
+            return !$scope.contact.OtrosDatos.ValorFinanciar || $scope.contact.OtrosDatos.ValorFinanciar < $scope.min || !$scope.cuotas || !$scope.cuota || $scope.cuota == 0;
+        }
                
         $scope.submitForm = function(){
-
-            console.log($scope.contact);
             $scope.contact.DatosBasicos.TipoDocumento = Number($scope.contact.DatosBasicos.TipoDocumento);
             $scope.contact.DatosFinancieros.ActividadEconomica = Number($scope.contact.DatosFinancieros.ActividadEconomica);
 
@@ -88,16 +90,14 @@ var ingreso;
                 body: $.param(bodyT),
                 headers: headerT
                 })
-                .then(function(response) {
-                        console.log(response);                        
-                        response.json();                     
-                    }, //ADDED >JSON() HERE                
+                .then(function(response) {                   
+                        return response.json();                   
+                    },              
                     function(error) 
                     {
-                        console.log('An error occurred.', error)
+                        return console.log('An error occurred.', error)
                     })
-                    .then(function(response){
-                        console.log(response);                        
+                    .then(function(response){                       
                         let token = response.Token;       
 
                         let headerVi = {
@@ -112,13 +112,13 @@ var ingreso;
                     })
                       
                       .then( function(response) {
-                          response.json()}
-                          )
+                          return response.json()
+                        })
                       .then(function(result) {
-                          $scope.resultado = result.IdResultado
+                          return $scope.resultado = result.IdResultado
                         })
                       .catch(function(error) {
-                          console.log('error', error)}
+                          return console.log('error', error)}
                           );                
                    
                   })

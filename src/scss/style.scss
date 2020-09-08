@@ -261,7 +261,7 @@ button:disabled, input[type=submit]:disabled{
     .brands{
         grid-column: 2;
         display: grid;
-        grid-template-columns: auto auto;
+        grid-template-columns: 50% 50%;
         img{
             width: 60%;
             align-self: center;
@@ -484,7 +484,7 @@ input:disabled + div {
     }    
 }
 
-.tycInput{
+.tycInput, .typInput{
     grid-column: 1/3;
     grid-row: 2;
     display: grid;
@@ -562,6 +562,21 @@ form{
     }
 }
 
+.noSmallTablet{
+    display: none;
+}
+
+.contenedorTitulo{
+    text-align: center;
+    margin: 25px 0;
+    .tituloMedio{
+        color: red;
+    }
+    p{
+        font-size: 10px;
+    }
+}
+
 /* Tablet */
 
 @media only screen and (min-width: 576px) {
@@ -621,6 +636,83 @@ form{
             grid-column: 3;
         }
     }
+
+    .containerModal{
+        background-color: rgba(255, 255, 255, 0.84);
+    }
+
+    .dosCol{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        .parteUno{
+            margin-right: 5px;
+            grid-column: 1;
+            grid-row: 1;
+        }
+        .parteDos{
+            grid-column: 2;
+            grid-row: 1;
+        }
+        
+    }
+
+    .noSmallTablet{
+        display: none;
+    }
+}
+
+/* Laptop */
+
+@media only screen and (min-width: 992px) {
+
+    .contenedor{
+        grid-template-columns: 30% 40% 30% !important;
+    }
+
+    .headerSuperior {
+        grid-template-columns: 30% 40% 30% !important;
+    }
+
+
+    .brands{
+            grid-template-columns: 30% 80% !important;
+        img{
+            justify-self: left !important;
+        }
+        .logoSantader{
+            width: 25% !important;
+        }
+        .logoCliente{
+            width: 70% !important;
+        }
+    }
+
+    .contTitulo{
+        p{
+            grid-column: 1/3 !important;
+        }
+
+        i, p{
+            grid-row: 1 !important;
+        }
+    }
+
+    .contCheckbox{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        .tycInput{
+            grid-column: 1;
+        }
+        .typInput{
+            grid-column: 2;
+        }
+    }
+
+    .noSmallTablet{
+        display: block !important;
+    }
+    
+
 }
 
 
