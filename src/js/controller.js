@@ -73,7 +73,7 @@ var ingreso;
         let bodyT = {'Username':$scope.username,'Password':$scope.password}
         
         /* 3 - Viable */
-        let urlV = "https://api.premiercredit.co:11444/PremierServices_API_EXT/api/viabilizacion/getviabilizacion"
+        let urlV = "https://api.premiercredit.co:11444/premierservices_api_ext/api/viabilizacion/getViabxConcesionario"
 
         let bodyV = $scope.contact;
 
@@ -109,7 +109,7 @@ var ingreso;
                     method: 'POST',               
                     body: JSON.stringify(bodyV),
                     headers: headerVi
-                    })
+                    })                    
                       
                       .then( function(response) {
                           return response.json()
