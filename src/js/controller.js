@@ -34,7 +34,7 @@ var ingreso;
 
         $scope.contact = {
             DatosBasicos:{
-                TipoDocumento:"",
+                TipoDocumento:"1",
                 NumeroDocumento:""
 
             },
@@ -57,8 +57,8 @@ var ingreso;
         $scope.tasa = 0.01;
 
         /* Credenciales */
-        $scope.username = "TuCarro";
-        $scope.password = "tuC@rr02019";
+        $scope.username = "carroYa";
+        $scope.password = "C@rr0Y@";
 
         /* 1 - Ping */
         /* let urlP= "https://apitst.premiercredit.co:11445/premierservices_api_ext_tst/api/login/echoping" */
@@ -73,7 +73,7 @@ var ingreso;
         let bodyT = {'Username':$scope.username,'Password':$scope.password}
         
         /* 3 - Viable */
-        let urlV = "https://api.premiercredit.co:11444/premierservices_api_ext/api/viabilizacion/getViabxConcesionario"
+        let urlV = "https://api.premiercredit.co:11444/premierservices_api_ext/api/viabilizacion/getViabilizacion"
 
         let bodyV = $scope.contact;
 
@@ -112,7 +112,7 @@ var ingreso;
                     })                    
                       
                       .then( function(response) {
-                          return response.json()
+                          return response.json();
                         })
                       .then(function(result) {
                           return $scope.resultado = result.IdResultado
