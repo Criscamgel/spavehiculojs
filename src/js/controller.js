@@ -21,9 +21,9 @@ var ingreso;
            ]
 
         $scope.ocupaciones = [
+            {value:1, name:"Empleado"},
             {value:1, name:"Pensionado"},
-            {value:2, name:"Empleado"},
-            {value:3, name:"Independiente"}
+            {value:2, name:"Independiente"}
            ]
         $scope.cuotas = [
             {value:48, name:"cuatroocho"},
