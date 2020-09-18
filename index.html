@@ -254,7 +254,30 @@
                                             </div>
                                         </div>
                                         <div class="gridButton">
-                                            <input id="stepTwo" type="submit" name="next" class="next action-button" value="SOLICITAR &#9658;" ng-disabled="contactForm.ingreso.$invalid || contactForm.ocupacion.$invalid || contactForm.financiar.$invalid || contact.DatosFinancieros.IngresoMensual < minv || !checkTyc || !checkCyp || contactForm.selDocumento.$invalid || contactForm.email.$invalid"/>
+                                            <input id="stepTwo" type="submit" name="next" class="next action-button" value="SOLICITAR &#9658;" 
+                                            ng-disabled="
+                                            contactForm.name.$invalid ||
+                                            contactForm.name.$error.minlength ||
+                                            contactForm.id.$invalid ||
+                                            contactForm.id.$error.minlength ||
+                                            contactForm.id.$error.maxlength ||
+                                            contactForm.id.$error.pattern ||
+                                            contactForm.selDocumento.$invalid ||
+                                            contactForm.phone.$invalid ||
+                                            contactForm.phone.$error.pattern ||
+                                            contactForm.phone.$error.minlength ||
+                                            contactForm.phone.$error.maxlength ||
+                                            contactForm.email.$invalid ||
+                                            contactForm.email.$error.pattern ||
+                                            contactForm.ocupacion.$invalid ||
+                                            contactForm.ingreso.$invalid ||
+                                            contactForm.ingreso.$error.minv ||
+                                            contact.DatosFinancieros.IngresoMensual < minv ||
+                                            !checkTyc ||
+                                            !checkCyp 
+                                                        "
+                                                        
+                                                        />
                                         </div>
                                 
                                     
