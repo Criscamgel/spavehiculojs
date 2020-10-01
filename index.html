@@ -74,6 +74,7 @@
                 <div class="contenido">
                     <div class="gridBody" ng-controller="formController">
                         
+                        <h4 class="titulo">Conoce si tu crédito es viable y sin papeles</h4>
                                       
                         <div class="containerLine">
                                 <!-- progressbar -->
@@ -86,7 +87,6 @@
                 
                         <div class="gridContenidoStep">
                         <div class="containerForm" ng-show="mostrarForm()">
-                            <!-- action="post.php" -->        
 
                                 <form name="contactForm" id="msform"  ng-submit="submitForm()"  novalidate>  
 
@@ -288,17 +288,15 @@
                                     <p class="titulo"><strong>¡Listo!</strong></p>
                                     <hr>
 
-                                    <div class="aprobado" ng-show="resultado == 3 || resultado == 2">
-                                    <img src="assets/aprobado.png" alt="">
+                                    <div class="aprobado" ng-show="resultado == -1">
+                                        <img src="assets/negado.png" alt="">
                                         <div class="textres">
-                                            <p class="titleAprobe">¡Tu crédito es viable!</p><br>
-                                            <p class="tRes">Pronto uno de nuestros asesores te llamara para acompañarte hasta que tengas tu vehículo. Estas a una llamada de tener carro ya</p>
+                                            <p class="titleNega">¡Ups tenemos un error!</p><br>
+                                            <p class="tRes">Desafortunadamente Ocurrió un error inesperado, vuelve a CarroYa y escoge nuevamente tu vehículo, acá te estaremos esperando</p>
                                         </div>
                                     </div>
 
-                                    <hr>
-
-                                    <div class="negado" ng-show="resultado == 1 || resultado == 4">
+                                    <div class="negado" ng-show="resultado == 1">
                                         <img src="assets/negado.png" alt="">
                                         <hr>
                                         <div class="textdos">
@@ -307,6 +305,27 @@
                                         </div>
                                         <hr>
                                     </div>
+
+                                    <div class="aprobado" ng-show="resultado == 2 || resultado == 3">
+                                    <img src="assets/aprobado.png" alt="">
+                                        <div class="textres">
+                                            <p class="titleAprobe">¡Tu crédito es viable!</p><br>
+                                            <p class="tRes">Pronto uno de nuestros asesores te llamara para acompañarte hasta que tengas tu vehículo. Estas a una llamada de tener Carro ya</p>
+                                        </div>
+                                    </div>
+
+                                    <hr>                                    
+
+                                    <div class="negado" ng-show="resultado == 4">
+                                        <img src="assets/negado.png" alt="">
+                                        <hr>
+                                        <div class="textdos">
+                                            <strong><p class="titleAprobe">Tu ya solicitud esta en proceso</p></strong>
+                                            <p class="tRes">Pronto uno de nuestros asesores te llamara para acompañarte hasta que tengas tu vehículo. Estas a una llamada de tener Carro ya</p>
+                                        </div>
+                                        <hr>
+                                    </div>
+
                                     <div class="gridButton">
                                         <input id="stepThree" type="button" name="submit" class="submit action-button" value="FINALIZAR" ng-click="reload()"/>
                                     </div>
