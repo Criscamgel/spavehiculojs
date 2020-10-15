@@ -254,7 +254,7 @@
                                             </div>
                                         </div>
                                         <div class="gridButton">
-                                            <input id="stepTwo" type="submit" name="next" class="next action-button" value="SOLICITAR &#9658;" 
+                                            <input id="stepTwo" type="submit" ng-click="mostrarEnriquecidos = false" name="next" class="next action-button" value="SOLICITAR &#9658;" 
                                             ng-disabled="
                                             contactForm.name.$invalid ||
                                             contactForm.name.$error.minlength ||
@@ -306,7 +306,16 @@
                                         <hr>
                                     </div>
 
-                                    <div class="aprobado" ng-show="resultado == 2 || resultado == 3">
+                                    <div class="aprobado" ng-show="resultado == 2">
+                                    <img src="assets/aprobado.png" alt="">
+                                        <div class="textres">
+                                            <p class="titleAprobe">¡Felicitaciones!</p><br>
+                                            <p class="tRes">Tu crédito es viable. Estas a un click de tener carro, chatea con tu asesor ahora haciendo <a href="">click aquí</a></br></br>
+                                            O si prefieres espera nuestra llamada
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="aprobado" ng-show="resultado == 3">
                                     <img src="assets/aprobado.png" alt="">
                                         <div class="textres">
                                             <p class="titleAprobe">¡Tu crédito es viable!</p><br>
@@ -333,6 +342,16 @@
 
                             </form>
                         </div><!-- Container Form -->
+
+                        <div ng-show="mostrarEnriquecidos" class="enriquecido">
+                            <h4>Obtén tu crédito y tendrás acceso a vehículos validados por Santander con los que tienes:</h4></br>
+                            <ul>
+                                <li><b>Tranquilidad:</b> Recibe un reporte RUNT para que verifiques el carro antes de elegirlo</li></br>
+                                <li><b>Confianza:</b> Obtén descuento en peritaje con nuestros aliados para que evalúes el carro antes de comprarlo</li></br>
+                                <li><b>Seguridad:</b> Tu dinero sólo es desembolsado al comprador cuando el vehículo esté a tu nombre</li></br>
+                            </ul>
+                        </div>
+
                         <div class="containerModal" ng-show="modal">
                     
                                 <div class="contTitulo">

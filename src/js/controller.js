@@ -1,14 +1,34 @@
 var app = angular.module("formLanding", []);
 var ingreso;
 
-    app.controller("formController", function($scope, $http){
+    app.config(['$locationProvider', function($locationProvider){
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });  
+    }]);
+
+    app.controller("formController", function($scope, $location){
+
+        $scope.mostrarEnriquecidos = false;
+
+        var fuente = $location.search().fuente;
+        if(fuente == 'enriquecido'){
+            $scope.mostrarEnriquecidos = true;
+        }
 
         /* Reload Temporal */
         $scope.resultado = 3;
         $scope.age = new Date().getFullYear();
+
         $scope.reload = function()
         {
-        window.location="https://www.carroya.com/"; 
+
+        if (window.history.go(-1) !== undefined) {
+            window.history.go(-1);
+            } else {
+              window.location.href = 'http://www.carroya.com';
+            }
         }
 
         $scope.checkTyc = false;
@@ -45,9 +65,13 @@ var ingreso;
             OtrosDatos:{
                 AutorizaConsultaCentrales: false,
                 AutorizaMareigua: false,
+                InfoUno: "",
+                InfoDos: "",
+                InfoTres: ""
             }
         }
-        
+
+        $scope.contact.OtrosDatos.InfoUno = getUtm();        
         $scope.modal = false;
         $scope.modalDos = false;
         $scope.min = 20000000;
@@ -60,11 +84,10 @@ var ingreso;
         $scope.username = "carroYa";
         $scope.password = "C@rr0Y@";
 
-        /* 1 - Ping */
-        /* let urlP= "https://apitst.premiercredit.co:11445/premierservices_api_ext_tst/api/login/echoping" */
-
         /* 2 - Token */
         let urlT= "https://api.premiercredit.co:11444/PremierServices_API_EXT/api/login/authenticate"
+        // Test
+        /* let urlT= "https://apitst.premiercredit.co:11445/PremierServices_api_ext/api/login/authenticate" */
         let headerT = {
                         'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
                         'Accept': 'application/json, application/xml, text/plain, text/html, *.*' 
@@ -74,6 +97,8 @@ var ingreso;
         
         /* 3 - Viable */
         let urlV = "https://api.premiercredit.co:11444/premierservices_api_ext/api/viabilizacion/getViabilizacion"
+        // Test
+        /* let urlV = "https://apitst.premiercredit.co:11445/premierservices_api_ext/api/viabilizacion/getViabilizacion" */
 
         let bodyV = $scope.contact;
 
@@ -115,6 +140,7 @@ var ingreso;
                           return response.json();
                         })
                       .then(function(result) {
+                          console.log(bodyV);
                           return $scope.resultado = result.IdResultado
                         })
                       .catch(function(error) {
@@ -222,4 +248,9 @@ var ingreso;
           }
         };
       })
+
+      function getUtm(){
+        var key = 'utm_source';
+        return window.location.search.substring(window.location.search.indexOf(key));
+      }
 
