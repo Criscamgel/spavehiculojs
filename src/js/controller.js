@@ -1,5 +1,6 @@
 var app = angular.module("formLanding", []);
 var ingreso;
+let resultado;
 
     app.config(['$locationProvider', function($locationProvider){
         $locationProvider.html5Mode({
@@ -10,6 +11,7 @@ var ingreso;
 
     app.controller("formController", function($scope, $location){
 
+        $scope.resultado = 3;
         $scope.mostrarEnriquecidos = false;
 
         var fuente = $location.search().fuente;
@@ -18,7 +20,6 @@ var ingreso;
         }
 
         /* Reload Temporal */
-        $scope.resultado = 3;
         $scope.age = new Date().getFullYear();
 
         $scope.reload = function()
@@ -79,6 +80,7 @@ var ingreso;
 
         $scope.cuota = 0;
         $scope.tasa = 0.01;
+        /* $scope.resultado = 0; */
 
         /* Credenciales */
         $scope.username = "carroYa";
@@ -102,11 +104,56 @@ var ingreso;
 
         let bodyV = $scope.contact;
 
+        function getResultado(value){
+            debugger;
+            $scope.resultado = value;
+            debugger;
+        };
+
         $scope.desabilitarBtnPrimerPaso = function(){
             return !$scope.contact.OtrosDatos.ValorFinanciar || $scope.contact.OtrosDatos.ValorFinanciar < $scope.min || !$scope.cuotas || !$scope.cuota || $scope.cuota == 0;
         }
-               
+
         $scope.submitForm = function(){
+
+            /* console.log($scope.contact); */
+            $scope.contact.DatosBasicos.TipoDocumento = Number($scope.contact.DatosBasicos.TipoDocumento);
+            $scope.contact.DatosFinancieros.ActividadEconomica = Number($scope.contact.DatosFinancieros.ActividadEconomica);
+
+            fetch(urlT, {
+                method: 'POST',
+                body: $.param(bodyT),
+                headers: headerT
+                })
+                .then(
+                    response => response.json(), //ADDED >JSON() HERE                
+                    error => console.log('An error occurred.', error))
+                  .then(function(res){
+                   let token = res.Token                  
+
+                   let headerVi = {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token,
+                   }            
+
+                   fetch(urlV, {
+                    method: 'POST',               
+                    body: JSON.stringify(bodyV),
+                    headers: headerVi
+                    })
+                      
+                      .then(response => response.json())
+                      .then(result => { 
+                          getResultado(Number(result.IdResultado));
+                        })
+                      .catch(error => console.log('error', error));                
+                   
+                  })
+                  
+        }
+    
+               
+        /* $scope.submitForm = function(){
             $scope.contact.DatosBasicos.TipoDocumento = Number($scope.contact.DatosBasicos.TipoDocumento);
             $scope.contact.DatosFinancieros.ActividadEconomica = Number($scope.contact.DatosFinancieros.ActividadEconomica);
 
@@ -140,16 +187,15 @@ var ingreso;
                           return response.json();
                         })
                       .then(function(result) {
-                          console.log(bodyV);
-                          return $scope.resultado = result.IdResultado
-                        })
+                          return $scope.resultado = result.IdResultado;
+                    })
                       .catch(function(error) {
                           return console.log('error', error)}
                           );                
                    
                   })
                   
-        }
+        } */
 
         $scope.calculoCta = function(val) {  
 
