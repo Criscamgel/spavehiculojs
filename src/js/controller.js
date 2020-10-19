@@ -105,9 +105,9 @@ let resultado;
         let bodyV = $scope.contact;
 
         function getResultado(value){
-            debugger;
+            /* debugger; */
             $scope.resultado = value;
-            debugger;
+            /* debugger; */
         };
 
         $scope.desabilitarBtnPrimerPaso = function(){
