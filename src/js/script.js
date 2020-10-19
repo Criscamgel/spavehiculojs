@@ -16,7 +16,7 @@ $("input.next.action-button").click(function(){
 	//show the next fieldset
 	setTimeout(function () {
 	next_fs.show(); 	
-	}, 1500);
+	}, 800);
 	
 	//hide the current fieldset with style
 	current_fs.animate({opacity: 0}, {

@@ -79,7 +79,7 @@ let resultado;
         $scope.minv = 1200000;
 
         $scope.cuota = 0;
-        $scope.tasa = 0.01;
+        $scope.tasa = 0.0115;
         /* $scope.resultado = 0; */
 
         /* Credenciales */
@@ -202,8 +202,9 @@ let resultado;
                  
                 let valorFinanciarCop = $scope.contact.OtrosDatos.ValorFinanciar
                           
-                let nmv = Math.pow((1 + $scope.tasa), (1 / 12)) - 1;
-                var seguroCuota = (1200 / 1000000) * valorFinanciarCop;
+                /* let nmv = Math.pow((1 + $scope.tasa), (1 / 12)) - 1; */
+                let nmv = 0.0115;
+                var seguroCuota = (1220 / 1000000) * valorFinanciarCop;
                 let cuota = Number(val);
 
                 var seguroTotal = Math.round(seguroCuota * cuota);

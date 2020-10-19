@@ -159,7 +159,6 @@
                                             <div class="parteUno">
                                                 <span class="fs-subtitle">Tipo de identificación<u class="asRed">*</u></span>
                                                 <select name="selDocumento" ng-model="contact.DatosBasicos.TipoDocumento" ng-selected="stringToNumber()" ng-required="true">
-                                                        <option value="" disabled>Selecciona tu tipo de Identificación</option>
                                                         <option value="{{item.value}}" ng-repeat="item in documentos">{{item.name}}</option>
                                                 </select>
                                             
@@ -212,14 +211,14 @@
                                                 <span class="input-peso left">
                                                     <input id="ingreso" type="text" name="ingreso" placeholder="Ingresa el valor" ng-model="contact.DatosFinancieros.IngresoMensual" ng-required="true" currency-input/>
                                                 </span>
-                                                <div ng-show="contactForm.ingresos.$touched && contactForm.ingresos.$invalid">
+                                                <div ng-show="contactForm.ingreso.$touched && contactForm.ingreso.$invalid">
                                                     <small class="error">Inserta tus ingresos mensuales</small>
                                                 </div>
                                                 <div ng-show="contactForm.ingreso.$error.minv || contact.DatosFinancieros.IngresoMensual < minv">
-                                                    <small class="error">Debes diligenciar un calor mayor a {{minv | currency:"$ ":0}}</small>
+                                                    <small class="error">Debes diligenciar un valor mayor a {{minv | currency:"$ ":0}}</small>
                                                 </div>
                                             </div>
-                        
+                                            </br>
                                         <hr>
 
                                         <div class="contFieldTyc">
@@ -229,7 +228,7 @@
                                             </div>
                                             
                                             <div class="pTyc">
-                                                <p class="tyc">PREMIER CREDIT o el TERCERO AUTORIZADO quedan autorizados para obtener información sobre mis relaciones comerciales con otras entidades y consultar mis reportes ante las centrales de información.</p>
+                                                <p class="tyc">SANTANDER CONSUMER FINANCE o el TERCERO AUTORIZADO quedan autorizados para obtener información sobre mis relaciones comerciales con otras entidades y consultar mis reportes ante las centrales de información.</p>
                                             </div>                                            
                                         </div>
 
