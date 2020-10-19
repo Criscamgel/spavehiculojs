@@ -222,6 +222,8 @@ let resultado;
                 var seguroCta = (Math.round(vlrPartunoSeg) / vlrPartdosSeg);
                 seguroCuota = seguroCta;
                 seguroCta = Math.round(seguroCta);
+
+                $scope.cuota += seguroCta;
         }
 
         $scope.reinicioCuota = function(val) {
