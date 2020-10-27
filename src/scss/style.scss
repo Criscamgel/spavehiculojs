@@ -730,6 +730,47 @@ form{
     text-align: justify;
 }
 
+fieldset#answer {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    .containerLoader, .content{
+        grid-row: 1;
+        grid-column: 1;
+    }
+}
+
+// Loader
+.containerLoader{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    min-height: 50vh;
+        .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #e1061b;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite; /* Safari */
+        animation: spin 2s linear infinite;
+        grid-row: 1fr;
+        grid-column: 1fr;
+        align-self: center;
+        justify-self: center;
+        }
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 
 
 

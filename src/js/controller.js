@@ -11,8 +11,7 @@ let resultado;
 
     app.controller("formController", function($scope, $location){
 
-        $scope.resultado = 3;
-        $scope.mostrarEnriquecidos = false;
+        $scope.resultado;
 
         var fuente = $location.search().fuente;
         if(fuente == 'enriquecido'){
@@ -80,7 +79,8 @@ let resultado;
 
         $scope.cuota = 0;
         $scope.tasa = 0.0115;
-        /* $scope.resultado = 0; */
+
+        $scope.loader = false;
 
         /* Credenciales */
         $scope.username = "carroYa";
@@ -105,9 +105,9 @@ let resultado;
         let bodyV = $scope.contact;
 
         function getResultado(value){
-            /* debugger; */
             $scope.resultado = value;
-            /* debugger; */
+            $scope.loader = false;
+            $scope.$apply();
         };
 
         $scope.desabilitarBtnPrimerPaso = function(){
@@ -115,8 +115,7 @@ let resultado;
         }
 
         $scope.submitForm = function(){
-
-            /* console.log($scope.contact); */
+            $scope.loader = true;
             $scope.contact.DatosBasicos.TipoDocumento = Number($scope.contact.DatosBasicos.TipoDocumento);
             $scope.contact.DatosFinancieros.ActividadEconomica = Number($scope.contact.DatosFinancieros.ActividadEconomica);
 
@@ -126,7 +125,7 @@ let resultado;
                 headers: headerT
                 })
                 .then(
-                    response => response.json(), //ADDED >JSON() HERE                
+                    response => response.json(),              
                     error => console.log('An error occurred.', error))
                   .then(function(res){
                    let token = res.Token                  
@@ -143,60 +142,14 @@ let resultado;
                     })
                       
                       .then(response => response.json())
-                      .then(result => { 
+                      .then(result => {
                           getResultado(Number(result.IdResultado));
                         })
-                      .catch(error => console.log('error', error));                
-                   
+                      .catch(error => console.log('error', error));               
+                        
                   })
                   
         }
-    
-               
-        /* $scope.submitForm = function(){
-            $scope.contact.DatosBasicos.TipoDocumento = Number($scope.contact.DatosBasicos.TipoDocumento);
-            $scope.contact.DatosFinancieros.ActividadEconomica = Number($scope.contact.DatosFinancieros.ActividadEconomica);
-
-            fetch(urlT, {
-                method: 'POST',
-                body: $.param(bodyT),
-                headers: headerT
-                })
-                .then(function(response) {                   
-                        return response.json();                   
-                    },              
-                    function(error) 
-                    {
-                        return console.log('An error occurred.', error)
-                    })
-                    .then(function(response){                       
-                        let token = response.Token;       
-
-                        let headerVi = {
-                            'Content-Type': 'application/json',
-                            'Authorization': 'Bearer ' + token,
-                        } 
-
-                   fetch(urlV, {
-                    method: 'POST',               
-                    body: JSON.stringify(bodyV),
-                    headers: headerVi
-                    })                    
-                      
-                      .then( function(response) {
-                          return response.json();
-                        })
-                      .then(function(result) {
-                          return $scope.resultado = result.IdResultado;
-                    })
-                      .catch(function(error) {
-                          return console.log('error', error)}
-                          );                
-                   
-                  })
-                  
-        } */
-
         $scope.calculoCta = function(val) {  
 
                  
