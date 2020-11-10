@@ -32,7 +32,7 @@ $("input.next.action-button").click(function(){
         'transform': 'scale('+scale+')'/* ,
 		'position': 'absolute' */
       });
-			next_fs.css({'left': left, 'opacity': opacity, 'display': 'grid'});
+			next_fs.css({'left': left, 'opacity': opacity, 'display': 'block'});
 		}, 
 		duration: 800, 
 		complete: function(){

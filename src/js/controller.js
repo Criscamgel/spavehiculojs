@@ -1,6 +1,6 @@
 var app = angular.module("formLanding", []);
 var ingreso;
-let resultado;
+/* var resultado; */
 
     app.config(['$locationProvider', function($locationProvider){
         $locationProvider.html5Mode({
@@ -87,22 +87,22 @@ let resultado;
         $scope.password = "C@rr0Y@";
 
         /* 2 - Token */
-        let urlT= "https://api.premiercredit.co:11444/PremierServices_API_EXT/api/login/authenticate"
+        var urlT= "https://api.premiercredit.co:11444/PremierServices_API_EXT/api/login/authenticate";
         // Test
         /* let urlT= "https://apitst.premiercredit.co:11445/PremierServices_api_ext/api/login/authenticate" */
-        let headerT = {
+        var headerT = {
                         'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
                         'Accept': 'application/json, application/xml, text/plain, text/html, *.*' 
                     }
 
-        let bodyT = {'Username':$scope.username,'Password':$scope.password}
+        var bodyT = {'Username':$scope.username,'Password':$scope.password}
         
         /* 3 - Viable */
-        let urlV = "https://api.premiercredit.co:11444/premierservices_api_ext/api/viabilizacion/getViabilizacion"
+        var urlV = "https://api.premiercredit.co:11444/premierservices_api_ext/api/viabilizacion/getViabilizacion"
         // Test
         /* let urlV = "https://apitst.premiercredit.co:11445/premierservices_api_ext/api/viabilizacion/getViabilizacion" */
 
-        let bodyV = $scope.contact;
+        var bodyV = $scope.contact;
 
         function getResultado(value){
             $scope.resultado = value;
@@ -119,21 +119,27 @@ let resultado;
             $scope.contact.DatosBasicos.TipoDocumento = Number($scope.contact.DatosBasicos.TipoDocumento);
             $scope.contact.DatosFinancieros.ActividadEconomica = Number($scope.contact.DatosFinancieros.ActividadEconomica);
 
+            /* var urlencoded = new URLSearchParams();
+            urlencoded.append("Username", "carroYa");
+            urlencoded.append("Password", "C@rr0Y@");*/
             fetch(urlT, {
                 method: 'POST',
-                body: $.param(bodyT),
+                body: bodyT,
                 headers: headerT
                 })
                 .then(
-                    response => response.json(),              
-                    error => console.log('An error occurred.', error))
-                  .then(function(res){
-                   let token = res.Token                  
+                    function (response) {
+                        console.log(response);                        
+                        return response.json();
+                    })
+                  .then(function(result){
+                    var token = result.Token;                  
 
-                   let headerVi = {
+                   var headerVi = {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + token,
-                   }            
+                   }
+                   console.log(token);            
 
                    fetch(urlV, {
                     method: 'POST',               
@@ -141,11 +147,13 @@ let resultado;
                     headers: headerVi
                     })
                       
-                      .then(response => response.json())
-                      .then(result => {
-                          getResultado(Number(result.IdResultado));
+                      .then(function (response) {
+                          return response.json()}
+                          )
+                      .then(function (result) {
+                          return getResultado(Number(result.IdResultado));
                         })
-                      .catch(error => console.log('error', error));               
+                      .catch(function (error) {console.log('error', error)});               
                         
                   })
                   
@@ -153,12 +161,12 @@ let resultado;
         $scope.calculoCta = function(val) {  
 
                  
-                let valorFinanciarCop = $scope.contact.OtrosDatos.ValorFinanciar
+                var valorFinanciarCop = $scope.contact.OtrosDatos.ValorFinanciar
                           
                 /* let nmv = Math.pow((1 + $scope.tasa), (1 / 12)) - 1; */
-                let nmv = 0.0115;
+                var nmv = 0.0115;
                 var seguroCuota = (1220 / 1000000) * valorFinanciarCop;
-                let cuota = Number(val);
+                var cuota = Number(val);
 
                 var seguroTotal = Math.round(seguroCuota * cuota);
                 var vlrActual = Math.round(valorFinanciarCop);
