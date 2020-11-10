@@ -543,7 +543,12 @@ form {
   text-align: center;
   font-size: 14px; }
   .aprobado .textres .titleAprobe, .negado .textres .titleAprobe {
-    color: green; }
+    color: green;
+    text-align: center; }
+
+.titleAprobe {
+  color: green;
+  text-align: center; }
 
 .negado .textdos {
   margin: 15px 0;

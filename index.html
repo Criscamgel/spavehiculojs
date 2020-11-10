@@ -253,7 +253,7 @@
                                             </div>
                                         </div>
                                         <div class="gridButton">
-                                            <input id="stepTwo" type="submit" ng-click="mostrarEnriquecidos = false" name="next" class="next action-button" value="SOLICITAR &#9658;" 
+                                            <input id="stepTwo" type="submit" name="next" class="next action-button" value="SOLICITAR &#9658;" 
                                             ng-disabled="
                                             contactForm.name.$invalid ||
                                             contactForm.name.$error.minlength ||
@@ -290,7 +290,7 @@
                                         <img src="assets/negado.png" alt="">
                                         <div class="textres">
                                             <p class="titleNega">¡Ups tenemos un error!</p><br>
-                                            <p class="tRes">Desafortunadamente Ocurrió un error inesperado, vuelve a CarroYa y escoge nuevamente tu vehículo, acá te estaremos esperando</p>
+                                            <p class="tRes">Tuvimos un problema, por favor intenta más tarde.</p>
                                         </div>
                                     </div>
 
@@ -298,40 +298,68 @@
                                         <img src="assets/negado.png" alt="">
                                         <hr>
                                         <div class="textdos">
-                                            <strong><p class="titleNega">¡Tu solicitud ha sido rechazada!</p></strong>
-                                            <p class="tRes">Uno de nuestros asesores se comunicarán contigo para explorar alternativas</p>
+                                            <strong><p class="titleNega">¡Lo sentimos!</p></strong>
+                                            <p class="tRes">Tu solicitud no es viable en este momento.</p>
                                         </div>
                                         <hr>
                                     </div>
-                                    <!-- Respuesta preaprobado enriquecido -->
                                     <div class="aprobado" ng-show="resultado == 2 && !mostrarEnriquecidos">
                                     <img src="assets/aprobado.png" alt="">
                                         <div class="textres">
+                                            <p class="titleAprobe">¡Tu solicitud es viable!</p><br>
+                                            <p class="tRes">Pronto uno de nuestros asesores se comunicará contigo para continuar la solicitud de crédito.</p>
+                                        </div>
+                                    </div>
+                                    <div class="aprobado" ng-show="resultado == 3 && !mostrarEnriquecidos">
+                                    <img src="assets/aprobado.png" alt="">
+                                        <div class="textres">
+                                            <p class="titleAprobe">¡Tu solicitud es viable!</p><br>
+                                            <p class="tRes">Pronto uno de nuestros asesores se comunicará contigo para continuar la solicitud de crédito.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="aprobado" ng-show="resultado == 4 && !mostrarEnriquecidos">
+                                        <img src="assets/aprobado.png" alt="">
+                                        <hr>
+                                        <div class="textdos">
+                                            <strong><p class="titleAprobe">Tu solicitud ya está en proceso</p></strong>
+                                            <p class="tRes">Pronto uno de nuestros asesores te llamara para acompañarte hasta que tengas tu vehículo.</p>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                    <!-- Respuesta aprobado enriquecido -->
+
+                                    <div class="aprobado" ng-show="resultado == 3 && mostrarEnriquecidos">
+                                    <img src="assets/aprobado.png" alt="">
+                                        <div class="textres">
                                             <p class="titleAprobe">¡Felicitaciones!</p><br>
-                                            <p class="tRes">Tu crédito es viable. Estas a un click de tener carro, chatea con tu asesor ahora haciendo <a href="https://cariai.com/santanderDigitalChannel/santanderDigitalChannel">click aquí</a><br/><br/>
+                                            <p class="tRes">¡Felicitaciones! Tu crédito es viable. Estás a un click de tener carro, chatea con tu asesor personalizado en haciendo <a class="pointer" href="https://api.whatsapp.com/send?phone=5717443592">click aquí <i id="iArrowLeft" class="fa fa-whatsapp" aria-hidden="true"></i></a> o escribiéndonos vía Whatsapp a nuestra cuenta oficial +57 1 7443592<br/><br/>
                                             O si prefieres espera nuestra llamada
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="aprobado" ng-show="resultado == 3 || (resultado == 2 && mostrarEnriquecidos == undefined)">
-                                    <img src="assets/aprobado.png" alt="">
+
+                                    <!-- Respuesta preaprobado enriquecido -->
+
+                                    <div class="aprobado" ng-show="resultado == 2 && mostrarEnriquecidos">
+                                        <img src="assets/aprobado.png" alt="">
                                         <div class="textres">
-                                            <p class="titleAprobe">¡Tu crédito es viable!</p><br>
-                                            <p class="tRes">Pronto uno de nuestros asesores te llamara para acompañarte hasta que tengas tu vehículo. Estas a una llamada de tener Carro ya</p>
+                                            <p class="titleAprobe">¡Felicitaciones!</p><br>
+                                            <p class="tRes">¡Felicitaciones! Tu crédito es viable. Estás a un click de tener carro, chatea con tu asesor personalizado en haciendo <a class="pointer" href="https://api.whatsapp.com/send?phone=5717443592">click aquí <i id="iArrowLeft" class="fa fa-whatsapp" aria-hidden="true"></i></a> o escribiéndonos vía Whatsapp a nuestra cuenta oficial +57 1 7443592<br/><br/>
+                                            O si prefieres espera nuestra llamada
+                                            </p>
                                         </div>
                                     </div>
 
-                                    <hr>                                    
-
-                                    <div class="negado" ng-show="resultado == 4">
+                                    <div class="aprobado" ng-if="resultado == 4 && mostrarEnriquecidos">
                                         <img src="assets/aprobado.png" alt="">
                                         <hr>
                                         <div class="textdos">
                                             <strong><p class="titleAprobe">Tu ya solicitud esta en proceso</p></strong>
-                                            <p class="tRes">Pronto uno de nuestros asesores te llamara para acompañarte hasta que tengas tu vehículo. Estas a una llamada de tener Carro ya</p>
+                                            <p class="tRes">Chatea con tu asesor personalizado en haciendo <a class="pointer" href="https://api.whatsapp.com/send?phone=5717443592">click aquí <i id="iArrowLeft" class="fa fa-whatsapp" aria-hidden="true"></i></a> o escribiéndonos vía Whatsapp a nuestra cuenta oficial +57 1 7443592</p>
                                         </div>
                                         <hr>
-                                    </div>
+                                    </div>                                    
 
                                     <div class="gridButton">
                                         <input id="stepThree" type="button" name="submit" class="submit action-button" value="FINALIZAR" ng-click="reload()"/>
@@ -441,7 +469,10 @@
                             </div>            
                         </div>
                         
-                        </div>                                                    
+                        </div>
+                        
+                            {{ resultado }} {{ mostrarEnriquecidos }}
+
                             <div class="pieImagen noBig">
                                 <img src="assets/santander.png" alt="">
                             </div>

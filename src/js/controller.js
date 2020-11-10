@@ -12,7 +12,7 @@ var ingreso;
     app.controller("formController", function($scope, $location){
 
         $scope.resultado;
-
+        $scope.mostrarEnriquecidos = false;
         var fuente = $location.search().fuente;
         if(fuente == 'enriquecido'){
             $scope.mostrarEnriquecidos = true;
@@ -36,7 +36,7 @@ var ingreso;
 
         $scope.documentos = [
             {value:1, name:"Cédula de Ciudadania"},
-            {value:2, name:"Cédula de Extrangería"},
+            {value:2, name:"Cédula de Extranjería"},
             {value:3, name:"NIT"}
            ]
 
@@ -94,8 +94,6 @@ var ingreso;
                         'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
                         'Accept': 'application/json, application/xml, text/plain, text/html, *.*' 
                     }
-
-        var bodyT = {'Username':$scope.username,'Password':$scope.password}
         
         /* 3 - Viable */
         var urlV = "https://api.premiercredit.co:11444/premierservices_api_ext/api/viabilizacion/getViabilizacion"
@@ -119,17 +117,17 @@ var ingreso;
             $scope.contact.DatosBasicos.TipoDocumento = Number($scope.contact.DatosBasicos.TipoDocumento);
             $scope.contact.DatosFinancieros.ActividadEconomica = Number($scope.contact.DatosFinancieros.ActividadEconomica);
 
-            /* var urlencoded = new URLSearchParams();
+            var urlencoded = new URLSearchParams();
             urlencoded.append("Username", "carroYa");
-            urlencoded.append("Password", "C@rr0Y@");*/
+            urlencoded.append("Password", "C@rr0Y@");
+
             fetch(urlT, {
                 method: 'POST',
-                body: bodyT,
+                body: urlencoded,
                 headers: headerT
                 })
                 .then(
-                    function (response) {
-                        console.log(response);                        
+                    function (response) {                      
                         return response.json();
                     })
                   .then(function(result){
@@ -138,8 +136,7 @@ var ingreso;
                    var headerVi = {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + token,
-                   }
-                   console.log(token);            
+                   }           
 
                    fetch(urlV, {
                     method: 'POST',               
@@ -148,8 +145,8 @@ var ingreso;
                     })
                       
                       .then(function (response) {
-                          return response.json()}
-                          )
+                          return response.json()
+                            })
                       .then(function (result) {
                           return getResultado(Number(result.IdResultado));
                         })
