@@ -546,6 +546,9 @@ form {
     color: green;
     text-align: center; }
 
+p.tRes {
+  text-align: center; }
+
 .titleAprobe {
   color: green;
   text-align: center; }
@@ -657,7 +660,7 @@ form {
     -ms-grid-column: 1 !important;
     -ms-grid-column-span: 2 !important;
     grid-column: 1/3 !important; }
-  .contTitulo i, .contTitulo p {
+  .contTitulo i {
     -ms-grid-row: 1 !important;
     grid-row: 1 !important; }
   .contCheckbox {
