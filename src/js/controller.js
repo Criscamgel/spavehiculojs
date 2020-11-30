@@ -66,12 +66,14 @@ var ingreso;
                 AutorizaConsultaCentrales: false,
                 AutorizaMareigua: false,
                 InfoUno: "",
-                InfoDos: "",
-                InfoTres: ""
+                ConcesionarioRadicacion: 0,
+                IdentificacionVendedor: 0
             }
         }
 
-        $scope.contact.OtrosDatos.InfoUno = getUtm();        
+        $scope.contact.OtrosDatos.InfoUno = getUtm();
+        $scope.contact.OtrosDatos.IdentificacionVendedor = Number(getIdv()) ? Number(getIdv()) : 0;
+        $scope.contact.OtrosDatos.ConcesionarioRadicacion = Number(getIdc()) ? Number(getIdc()) : 0;
         $scope.modal = false;
         $scope.modalDos = false;
         $scope.min = 20000000;
@@ -258,6 +260,14 @@ var ingreso;
 
       function getUtm(){
         var key = 'utm_source';
+        return window.location.search.substring(window.location.search.indexOf(key));
+      }
+      function getIdc(){
+        var key = 'idc';
+        return window.location.search.substring(window.location.search.indexOf(key));
+      }
+      function getIdv(){
+        var key = 'idv';
         return window.location.search.substring(window.location.search.indexOf(key));
       }
 
