@@ -18,6 +18,16 @@ var ingreso;
             $scope.mostrarEnriquecidos = true;
         }
 
+        if($location.search().utm_source){
+            $scope.utmSource = $location.search().utm_source;
+        }
+        if($location.search().idc){
+            $scope.idc = $location.search().idc;
+        }
+        if($location.search().idv){
+            $scope.idv = $location.search().idv;
+        }
+
         /* Reload Temporal */
         $scope.age = new Date().getFullYear();
 
@@ -70,10 +80,10 @@ var ingreso;
                 IdentificacionVendedor: 0
             }
         }
-
-        $scope.contact.OtrosDatos.InfoUno = getUtm();
-        $scope.contact.OtrosDatos.IdentificacionVendedor = Number(getIdv()) ? Number(getIdv()) : 0;
-        $scope.contact.OtrosDatos.ConcesionarioRadicacion = Number(getIdc()) ? Number(getIdc()) : 0;
+        /* Igualando desde los params */
+        $scope.contact.OtrosDatos.InfoUno = $scope.utmSource;
+        $scope.contact.OtrosDatos.IdentificacionVendedor = $scope.idv ? $scope.idv : 0;
+        $scope.contact.OtrosDatos.ConcesionarioRadicacion = $scope.idc ? $scope.idc : 0;
         $scope.modal = false;
         $scope.modalDos = false;
         $scope.min = 20000000;
@@ -116,7 +126,7 @@ var ingreso;
         }
 
         $scope.submitForm = function(){
-            $scope.loader = true;
+            $scope.loader = true;            
             $scope.contact.DatosBasicos.TipoDocumento = Number($scope.contact.DatosBasicos.TipoDocumento);
             $scope.contact.DatosFinancieros.ActividadEconomica = Number($scope.contact.DatosFinancieros.ActividadEconomica);
 
@@ -258,17 +268,5 @@ var ingreso;
           }
         };
       })
-
-      function getUtm(){
-        var key = 'utm_source';
-        return window.location.search.substring(window.location.search.indexOf(key));
-      }
-      function getIdc(){
-        var key = 'idc';
-        return window.location.search.substring(window.location.search.indexOf(key));
-      }
-      function getIdv(){
-        var key = 'idv';
-        return window.location.search.substring(window.location.search.indexOf(key));
-      }
+      
 
