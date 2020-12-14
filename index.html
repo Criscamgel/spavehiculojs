@@ -339,18 +339,9 @@
                                         </div>
                                     </div>
 
-                                    <!-- Respuesta preaprobado enriquecido -->
+                                    <!-- Respuesta preaprobado No enriquecido -->
 
-                                    <div class="aprobado" ng-show="resultado == 2 && (mostrarEnriquecidos || !mostrarEnriquecidos) && (variantePreaprobado == 24 || variantePreaprobado == 25 || variantePreaprobado == 26)">
-                                        <img src="assets/aprobado.png" alt="">
-                                        <div class="textres">
-                                            <p class="titleAprobe">¡Tu solicitud es viable!</p><br>
-                                            <p class="tRes">Pronto uno de nuestros asesores se comunicará contigo para continuar la solicitud de crédito.<br/><br/>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="negado" ng-show="resultado == 2 && (mostrarEnriquecidos || !mostrarEnriquecidos) && variantePreaprobado == 2">
+                                    <div class="negado" ng-show="resultado == 2 && !mostrarEnriquecidos && (variantePreaprobado == 2 || variantePreaprobado == 21 || variantePreaprobado == 22)">
                                         <img src="assets/negado.png" alt="">
                                         <hr>
                                         <div class="textdos">
@@ -360,7 +351,27 @@
                                         <hr>
                                     </div>
 
-                                    <!-- Opciones Pre-Aprobado -->
+                                    <div class="aprobado" ng-show="resultado == 2 && !mostrarEnriquecidos && (variantePreaprobado == 23 || variantePreaprobado == 24 || variantePreaprobado == 25 || variantePreaprobado == 26)">
+                                        <img src="assets/aprobado.png" alt="">
+                                        <div class="textres">
+                                            <p class="titleAprobe">¡Tu solicitud es viable!</p><br>
+                                            <p class="tRes">Pronto uno de nuestros asesores se comunicará contigo para continuar la solicitud de crédito.<br/><br/>
+                                            </p>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Respuesta preaprobado enriquecido -->
+
+                                    <div class="negado" ng-show="resultado == 2 && mostrarEnriquecidos && (variantePreaprobado == 2 || variantePreaprobado == 22)">
+                                        <img src="assets/negado.png" alt="">
+                                        <hr>
+                                        <div class="textdos">
+                                            <strong><p class="titleNega">¡Lo sentimos!</p></strong>
+                                            <p class="tRes">Tu solicitud no es viable en este momento.</p>
+                                        </div>
+                                        <hr>
+                                    </div>
 
                                     <div class="aprobado" ng-show="resultado == 2 && mostrarEnriquecidos && variantePreaprobado == 21">
                                         <img src="assets/aprobado.png" alt="">
@@ -378,24 +389,19 @@
                                         </div>
                                     </div>
 
-                                    <div class="negado" ng-show="resultado == 2 && mostrarEnriquecidos && variantePreaprobado == 22">
-                                        <img src="assets/negado.png" alt="">
-                                        <hr>
-                                        <div class="textdos">
-                                            <strong><p class="titleNega">¡Lo sentimos!</p></strong>
-                                            <p class="tRes">Tu solicitud no es viable en este momento.</p>
-                                        </div>
-                                        <hr>
-                                    </div>
-
-                                    <div class="aprobado" ng-show="resultado == 2 && mostrarEnriquecidos && variantePreaprobado == 23 || variantePreaprobado == 26">
+                                    <div class="aprobado" ng-show="resultado == 2 && mostrarEnriquecidos && (variantePreaprobado == 23 || variantePreaprobado == 26)">
                                         <img src="assets/aprobado.png" alt="">
-                                        <div class="textres">
-                                            <p class="titleAprobe">¡Felicitaciones!</p><br>
-                                            <p class="tRes">Tu crédito es viable. Estás a un click de tener carro, chatea con tu asesor personalizado haciendo <a class="pointer whatsapp" href="https://cariai.com/santanderdigitalchannel/santanderdigitalchannel">click aquí <i class="fa fa-whatsapp" aria-hidden="true"></i></a> o escribiéndonos vía Whatsapp a nuestra cuenta oficial +57 1 7443592<br/><br/>
-                                            </p>
+                                            <div class="textres">
+                                                <p class="titleAprobe">¡Felicitaciones!</p><br>
+                                                <p class="tRes">Tu crédito es viable. Estás a un click de tener carro, chatea con tu asesor personalizado haciendo <a class="pointer whatsapp" href="https://cariai.com/santanderdigitalchannel/santanderdigitalchannel">click aquí <i class="fa fa-whatsapp" aria-hidden="true"></i></a> o escribiéndonos vía Whatsapp a nuestra cuenta oficial +57 1 7443592<br/><br/>
+                                                </p>
+                                            </div>
+                                            <div class="gridButton">
+                                                <a href="https://cariai.com/santanderdigitalchannel/santanderdigitalchannel">
+                                                    <input id="stepThree" type="button" name="submit" class="submit action-button" value="Chatea con tu asesor"/>
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
 
                                     <div class="aprobado" ng-show="resultado == 2 && mostrarEnriquecidos && variantePreaprobado == 24">
                                         <img src="assets/aprobado.png" alt="">
