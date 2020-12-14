@@ -149,7 +149,7 @@
                                                                                     
                                             <div class="contField">
                                             <span class="fs-subtitle">¿Cómo te llamas?<u class="asRed">*</u></span>
-                                            <input type="text" name="name" placeholder="Ingresa tus nombres y apellidos" ng-model="contact.DatosBasicos.Nombre1" ng-required="true" ng-minlength="3" ng-maxlength="20" replace="[^a-zA-Z\s]" with=""/>
+                                            <input type="text" name="name" placeholder="Ingresa tus nombres y apellidos" ng-model="contact.DatosBasicos.Nombre1" ng-required="true" ng-minlength="3" ng-maxlength="70" replace="[^a-zA-Z\s]" with=""/>
                                             <div ng-show="contactForm.name.$touched && contactForm.name.$invalid || contactForm.name.$error.minlength || contactForm.name.$error.maxlength">
                                                 <small class="error">Ingresa un nombre válido</small>
                                             </div>
@@ -303,6 +303,7 @@
                                         </div>
                                         <hr>
                                     </div>
+
                                     <div class="aprobado" ng-show="resultado == 2 && !mostrarEnriquecidos">
                                     <img src="assets/aprobado.png" alt="">
                                         <div class="textres">
@@ -340,7 +341,54 @@
 
                                     <!-- Respuesta preaprobado enriquecido -->
 
-                                    <div class="aprobado" ng-show="resultado == 2 && mostrarEnriquecidos">
+                                    <div class="aprobado" ng-show="resultado == 2 && (mostrarEnriquecidos || !mostrarEnriquecidos) && (variantePreaprobado == 24 || variantePreaprobado == 25 || variantePreaprobado == 26)">
+                                        <img src="assets/aprobado.png" alt="">
+                                        <div class="textres">
+                                            <p class="titleAprobe">¡Tu solicitud es viable!</p><br>
+                                            <p class="tRes">Pronto uno de nuestros asesores se comunicará contigo para continuar la solicitud de crédito.<br/><br/>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="negado" ng-show="resultado == 2 && (mostrarEnriquecidos || !mostrarEnriquecidos) && variantePreaprobado == 2">
+                                        <img src="assets/negado.png" alt="">
+                                        <hr>
+                                        <div class="textdos">
+                                            <strong><p class="titleNega">¡Lo sentimos!</p></strong>
+                                            <p class="tRes">Tu solicitud no es viable en este momento.</p>
+                                        </div>
+                                        <hr>
+                                    </div>
+
+                                    <!-- Opciones Pre-Aprobado -->
+
+                                    <div class="aprobado" ng-show="resultado == 2 && mostrarEnriquecidos && variantePreaprobado == 21">
+                                        <img src="assets/aprobado.png" alt="">
+                                        <div class="textres">
+                                            <p class="titleAprobe">¡Estás muy cerca de tener tu crédito aprobado! Para lograrlo debes enviar un correo a digitalcanal@santanderconsumer.co con los siguientes documentos:</p><br>
+                                            <p class="tRes">1) Si eres empleado (permanente, por prestación de servicios o por obra/labor): Debes haber trabajado los últimos 12 meses, y debes enviar el/los certificado(s) que lo demuestren<br>
+                                                2) Si eres independiente: Debes tener una trayectoria de al menos 2 años, y debes enviar Cámara de Comercio ó RUT, extractos bancarios de los últimos 3 meses y dos referencias comerciales (cartas de tus proveedores o clientes indicando tiempo de la relación y monto promedio de los pagos)
+                                                <br/><br/>
+                                            </p>
+                                        </div>
+                                        <div class="gridButton">
+                                            <a href="mailto:digitalcanal@santanderconsumer.co?subject=Soy-preaprobado">
+                                                <input id="stepThree" type="button" name="submit" class="submit action-button" value="Enviar email"/>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="negado" ng-show="resultado == 2 && mostrarEnriquecidos && variantePreaprobado == 22">
+                                        <img src="assets/negado.png" alt="">
+                                        <hr>
+                                        <div class="textdos">
+                                            <strong><p class="titleNega">¡Lo sentimos!</p></strong>
+                                            <p class="tRes">Tu solicitud no es viable en este momento.</p>
+                                        </div>
+                                        <hr>
+                                    </div>
+
+                                    <div class="aprobado" ng-show="resultado == 2 && mostrarEnriquecidos && variantePreaprobado == 23 || variantePreaprobado == 26">
                                         <img src="assets/aprobado.png" alt="">
                                         <div class="textres">
                                             <p class="titleAprobe">¡Felicitaciones!</p><br>
@@ -349,6 +397,42 @@
                                         </div>
                                     </div>
 
+                                    <div class="aprobado" ng-show="resultado == 2 && mostrarEnriquecidos && variantePreaprobado == 24">
+                                        <img src="assets/aprobado.png" alt="">
+                                        <div class="textres">
+                                            <p class="titleAprobe">¡Estás muy cerca de tener tu crédito aprobado! Para lograrlo debes enviar un correo a digitalcanal@santanderconsumer.co con los siguientes documentos:</p><br>
+                                            <p class="tRes">1) Si eres empleado (permanente, por prestación de servicios o por obra/labor): Debes haber trabajado los últimos 12 meses, y debes enviar el/los certificado(s) que lo demuestren<br>
+                                                2) Si eres independiente: Debes tener una trayectoria de al menos 2 años, y debes enviar Cámara de Comercio ó RUT, extractos bancarios de los últimos 3 meses y dos referencias comerciales (cartas de tus proveedores o clientes indicando tiempo de la relación y monto promedio de los pagos)
+                                                
+                                                <br/><br/>
+                                            </p>
+                                        </div>
+                                        <div class="gridButton">
+                                            <a href="mailto:digitalcanal@santanderconsumer.co?subject=Soy-preaprobado">
+                                                <input id="stepThree" type="button" name="submit" class="submit action-button" value="Enviar email"/>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="aprobado" ng-show="resultado == 2 && mostrarEnriquecidos && variantePreaprobado == 25">
+                                        <img src="assets/aprobado.png" alt="">
+                                        <div class="textres">
+                                            <p class="titleAprobe">¡Estás muy cerca de tener tu crédito aprobado! Para lograrlo debes enviar un correo a digitalcanal@santanderconsumer.co con los siguientes documentos:</p><br>
+                                            <p class="tRes">1) Si eres empleado (permanente, por prestación de servicios o por obra/labor): Debes haber trabajado los últimos 12 meses, y debes enviar el/los certificado(s) que lo demuestren<br>
+                                                2) Si eres independiente: Debes tener una trayectoria de al menos 2 años, y debes enviar Cámara de Comercio ó RUT, extractos bancarios de los últimos 3 meses y dos referencias comerciales (cartas de tus proveedores o clientes indicando tiempo de la relación y monto promedio de los pagos)                                             
+                                                
+                                                <br/><br/>
+                                            </p>
+                                        </div>
+                                        <div class="gridButton">
+                                            <a href="mailto:digitalcanal@santanderconsumer.co?subject=Soy-preaprobado">
+                                                <input id="stepThree" type="button" name="submit" class="submit action-button" value="Enviar email"/>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Fin Opciones Pre-Aprobado -->
+                                    
                                     <div class="aprobado" ng-if="resultado == 4 && mostrarEnriquecidos">
                                         <img src="assets/aprobado.png" alt="">
                                         <hr>

@@ -115,11 +115,61 @@ var ingreso;
 
         var bodyV = $scope.contact;
 
-        function getResultado(value){
+        function getResultado(value, mensaje){
+            debugger;
+            console.log(mensaje);
             $scope.resultado = value;
             $scope.loader = false;
+            arreglarResultadoPre(mensaje);
             $scope.$apply();
         };
+
+        function arreglarResultadoPre(mensaje) {
+            var r = mensaje.toLowerCase();
+            r = r.replace(new RegExp("\\s", 'g'),"");
+            r = r.replace(new RegExp("[àáâãäå]", 'g'),"a");
+            r = r.replace(new RegExp("æ", 'g'),"ae");
+            r = r.replace(new RegExp("ç", 'g'),"c");
+            r = r.replace(new RegExp("[èéêë]", 'g'),"e");
+            r = r.replace(new RegExp("[ìíîï]", 'g'),"i");
+            r = r.replace(new RegExp("ñ", 'g'),"n");                            
+            r = r.replace(new RegExp("[òóôõö]", 'g'),"o");
+            r = r.replace(new RegExp("œ", 'g'),"oe");
+            r = r.replace(new RegExp("[ùúûü]", 'g'),"u");
+            r = r.replace(new RegExp("[ýÿ]", 'g'),"y");
+            r = r.replace(new RegExp("\\W", 'g'),"");
+            
+            if(r == 'preaprobadonosevalidoingresopormareiguanosevalidoingresoporincomeestimatorpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack'){
+                $scope.variantePreaprobado = 21;
+            }else{
+                $scope.variantePreaprobado = 2;
+            }
+            if(r == 'preaprobadonosevalidoingresopormareiguanosevalidoingresoporincomeestimatorreglasmotorycapacidaddepagovalidoperopreaprobadoportipodeingreso'){
+                $scope.variantePreaprobado = 22;
+            }else{
+                $scope.variantePreaprobado = 2;
+            }
+            if(r == 'preaprobadopreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack'){
+                $scope.variantePreaprobado = 23;
+            }else{
+                $scope.variantePreaprobado = 2;
+            }
+            if(r == 'preaprobadosevalidoenmareiguaperonocumpleconcontinuidadlaboralpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack'){
+                $scope.variantePreaprobado = 24;
+            }else{
+                $scope.variantePreaprobado = 2;
+            }
+            if(r == 'preaprobadosevalidoenmareiguaperonocumpleconcontinuidadlaboralreglasmotorycapacidaddepagovalidoperopreaprobadoportipodeingreso'){
+                $scope.variantePreaprobado = 25;
+            }else{
+                $scope.variantePreaprobado = 2;
+            }
+            if(r == 'preaprobadonosevalidocorreoelectroniconicelularporubica'){
+                $scope.variantePreaprobado = 26;
+            }else{
+                $scope.variantePreaprobado = 2;
+            }
+        }
 
         $scope.desabilitarBtnPrimerPaso = function(){
             return !$scope.contact.OtrosDatos.ValorFinanciar || $scope.contact.OtrosDatos.ValorFinanciar < $scope.min || !$scope.cuotas || !$scope.cuota || $scope.cuota == 0;
@@ -161,7 +211,7 @@ var ingreso;
                           return response.json()
                             })
                       .then(function (result) {
-                          return getResultado(Number(result.IdResultado));
+                          return getResultado(Number(result.IdResultado), result.Resultado);
                         })
                       .catch(function (error) {console.log('error', error)});               
                         
