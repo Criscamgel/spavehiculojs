@@ -116,8 +116,6 @@ var ingreso;
         var bodyV = $scope.contact;
 
         function getResultado(value, mensaje){
-            debugger;
-            console.log(mensaje);
             $scope.resultado = value;
             $scope.loader = false;
             arreglarResultadoPre(mensaje);
@@ -139,7 +137,7 @@ var ingreso;
             r = r.replace(new RegExp("[ýÿ]", 'g'),"y");
             r = r.replace(new RegExp("\\W", 'g'),"");
             
-            console.log(r.length);
+            
             if(r.length > 12){
                 if(r == 'preaprobadonosevalidoingresopormareiguanosevalidoingresoporincomeestimatorpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack'){
                     $scope.variantePreaprobado = 21;
