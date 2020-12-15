@@ -116,7 +116,7 @@ var ingreso;
         var bodyV = $scope.contact;
 
         function getResultado(value, mensaje){
-            if(value == 4){
+            if($scope.mostrarEnriquecidos && (value == 4 || value == 3)){
                 $scope.sendWhatsapp = true;
             }
             $scope.resultado = value;
