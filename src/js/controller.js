@@ -139,33 +139,31 @@ var ingreso;
             r = r.replace(new RegExp("[ýÿ]", 'g'),"y");
             r = r.replace(new RegExp("\\W", 'g'),"");
             
-            if(r == 'preaprobadonosevalidoingresopormareiguanosevalidoingresoporincomeestimatorpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack'){
-                $scope.variantePreaprobado = 21;
-            }else{
-                $scope.variantePreaprobado = 2;
-            }
-            if(r == 'preaprobadonosevalidoingresopormareiguanosevalidoingresoporincomeestimatorreglasmotorycapacidaddepagovalidoperopreaprobadoportipodeingreso'){
-                $scope.variantePreaprobado = 22;
-            }else{
-                $scope.variantePreaprobado = 2;
-            }
-            if(r == 'preaprobadopreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack'){
-                $scope.variantePreaprobado = 23;
-            }else{
-                $scope.variantePreaprobado = 2;
-            }
-            if(r == 'preaprobadosevalidoenmareiguaperonocumpleconcontinuidadlaboralpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack'){
-                $scope.variantePreaprobado = 24;
-            }else{
-                $scope.variantePreaprobado = 2;
-            }
-            if(r == 'preaprobadosevalidoenmareiguaperonocumpleconcontinuidadlaboralreglasmotorycapacidaddepagovalidoperopreaprobadoportipodeingreso'){
-                $scope.variantePreaprobado = 25;
-            }else{
-                $scope.variantePreaprobado = 2;
-            }
-            if(r == 'preaprobadonosevalidocorreoelectroniconicelularporubica'){
-                $scope.variantePreaprobado = 26;
+            console.log(r.length);
+            if(r.length > 12){
+                if(r == 'preaprobadonosevalidoingresopormareiguanosevalidoingresoporincomeestimatorpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack'){
+                    $scope.variantePreaprobado = 21;
+                    $scope.sendMail = true;
+                }
+                if(r == 'preaprobadonosevalidoingresopormareiguanosevalidoingresoporincomeestimatorreglasmotorycapacidaddepagovalidoperopreaprobadoportipodeingreso'){
+                    $scope.variantePreaprobado = 22;
+                }
+                if(r == 'preaprobadopreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack'){
+                    $scope.variantePreaprobado = 23;
+                    $scope.sendWhatsapp = true;
+                }
+                if(r == 'preaprobadosevalidoenmareiguaperonocumpleconcontinuidadlaboralpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack'){
+                    $scope.variantePreaprobado = 24;
+                    $scope.sendMail = true;
+                }
+                if(r == 'preaprobadosevalidoenmareiguaperonocumpleconcontinuidadlaboralreglasmotorycapacidaddepagovalidoperopreaprobadoportipodeingreso'){
+                    $scope.variantePreaprobado = 25;
+                    $scope.sendMail = true;
+                }
+                if(r == 'preaprobadonosevalidocorreoelectroniconicelularporubica'){
+                    $scope.variantePreaprobado = 26;
+                    $scope.sendWhatsapp = true;
+                }
             }else{
                 $scope.variantePreaprobado = 2;
             }

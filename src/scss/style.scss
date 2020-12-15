@@ -544,7 +544,7 @@ form{
     }
     .textres{
         margin: 5px 0;
-        text-align: center;
+        text-align: justify;
         font-size: 14px;
         .titleAprobe{
             color: green;
@@ -554,7 +554,12 @@ form{
 }
 
 p.tRes {
-    text-align: center;
+    text-align: justify;
+}
+
+input#stepThreenoImportant {
+    background: none !important;
+    color: #e1061b !important;
 }
 
 .titleAprobe{
