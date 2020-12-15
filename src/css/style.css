@@ -540,14 +540,18 @@ form {
 
 .aprobado .textres, .negado .textres {
   margin: 5px 0;
-  text-align: center;
+  text-align: justify;
   font-size: 14px; }
   .aprobado .textres .titleAprobe, .negado .textres .titleAprobe {
     color: green;
     text-align: center; }
 
 p.tRes {
-  text-align: center; }
+  text-align: justify; }
+
+input#stepThreenoImportant {
+  background: none !important;
+  color: #e1061b !important; }
 
 .titleAprobe {
   color: green;
