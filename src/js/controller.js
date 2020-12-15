@@ -116,6 +116,9 @@ var ingreso;
         var bodyV = $scope.contact;
 
         function getResultado(value, mensaje){
+            if(value == 4){
+                $scope.sendWhatsapp = true;
+            }
             $scope.resultado = value;
             $scope.loader = false;
             arreglarResultadoPre(mensaje);
