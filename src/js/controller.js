@@ -151,19 +151,27 @@ var ingreso;
                 }
                 if(r == 'preaprobadopreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack'){
                     $scope.variantePreaprobado = 23;
+                    if($scope.mostrarEnriquecidos){
                     $scope.sendWhatsapp = true;
+                    }
                 }
                 if(r == 'preaprobadosevalidoenmareiguaperonocumpleconcontinuidadlaboralpreaprobadoporvalidacionreglasmotorcapacidaddepagoyobanconoaplicaparafasttrack'){
                     $scope.variantePreaprobado = 24;
+                    if($scope.mostrarEnriquecidos){
                     $scope.sendMail = true;
+                    }
                 }
                 if(r == 'preaprobadosevalidoenmareiguaperonocumpleconcontinuidadlaboralreglasmotorycapacidaddepagovalidoperopreaprobadoportipodeingreso'){
                     $scope.variantePreaprobado = 25;
+                    if($scope.mostrarEnriquecidos){
                     $scope.sendMail = true;
+                    }
                 }
                 if(r == 'preaprobadonosevalidocorreoelectroniconicelularporubica'){
                     $scope.variantePreaprobado = 26;
+                    if($scope.mostrarEnriquecidos){
                     $scope.sendWhatsapp = true;
+                    }
                 }
             }else{
                 $scope.variantePreaprobado = 2;
