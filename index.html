@@ -96,9 +96,40 @@
                                     <hr>
 
                                     <div class="contField primero">
-                                        <span class="fs-subtitle">Cuanto dinero deseas financiar<u class="asRed">*</u></span>
+                                            <!--  -->
+                                            <div class="contField dosCol">
+                                                <div class="parteUno">
+
+                                                        <span class="fs-subtitle">Cuál es el valor del vehículo<u class="asRed">*</u></span>
+                                                        <span class="input-peso left">
+                                                            <input type="tel" id="valorVehiculo" name="valorVehiculo" placeholder="Ingresa el valor" ng-model="contact.DatosBasicos.ValorVehiculo" ng-required="true" ng-change="makeCuotaInicial(contact.DatosBasicos.ValorVehiculo); reinicioCuota(contact.DatosBasicos.ValorVehiculo)" currency-input/>
+                                                        </span>
+                                                        <div ng-show="contactForm.ValorVehiculo.$touched || contact.DatosBasicos.ValorVehiculo < min">
+                                                            <small class="error">El valor minimo del vehículo debe ser de {{min | currency:"$ ":0}}</small>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="parteDos">
+
+                                                    <span class="fs-subtitle">Modelo del carro<u class="asRed">*</u></span>
+                                                    <select name="selModelo" ng-model="contact.DatosVehiculo.Modelo" ng-required="true">
+                                                        <option value="{{item.value}}" ng-repeat="item in modelos">{{item.name}}</option>
+                                                    </select>
+
+                                                    </div>
+                                            </div>
+                                            <!--  -->
+                                            <span class="fs-subtitle">Cuota inicial<u class="asRed">*</u><b>({{porcentaje ? porcentaje : 0}}%)</b></span>
                                             <span class="input-peso left">
-                                                <input type="tel" id="valorFinanciar" name="valorFinanciar" placeholder="Ingresa el valor" ng-model="contact.OtrosDatos.ValorFinanciar" ng-required="true" ng-change="reinicioCuota(contact.OtrosDatos.ValorFinanciar)" currency-input/>
+                                                <input type="tel" id="cuotaInicial" name="cuotaInicial" placeholder="Ingresa el valor" ng-model="contact.DatosBasicos.CuotaInicial" ng-required="true" ng-change="makeValorTotal(contact.DatosBasicos.ValorVehiculo, contact.DatosBasicos.CuotaInicial);" ng-disabled="!contact.DatosBasicos.ValorVehiculo" currency-input/>
+                                            </span>
+                                            <div ng-show="contactForm.cuotaInicial.$touched && contact.DatosBasicos.CuotaInicial >= contact.DatosBasicos.ValorVehiculo">
+                                                <small class="error">La cuota inicial no debe ser mayor a {{contact.DatosBasicos.ValorVehiculo | currency:"$ ":0}}</small>
+                                            </div>
+                                            <!--  -->
+                                            <span class="fs-subtitle">Valor total a financiar<u class="asRed">*</u></span>
+                                            <span class="input-peso left">
+                                                <input type="tel" id="valorFinanciar" name="valorFinanciar" placeholder="Este es el valor total a financiar" ng-disabled="true" ng-model="contact.OtrosDatos.ValorFinanciar" ng-required="true" currency-input/>
                                             </span>
                                             <div ng-show="contactForm.ValorFinanciar.$touched && contactForm.valorFinanciar.$error.min || contact.OtrosDatos.ValorFinanciar < min">
                                                 <small class="error">El valor minimo a financiar es de {{min | currency:"$ ":0}}</small>
@@ -110,8 +141,10 @@
                                                     <div class="contPeriodo">
                                                         <span class="radio" ng-repeat="(key, cuota) in cuotas" id={{cuota.name}}>
             
-                                                            <input class="{{cuota.name}}" [(ngModel)]="cuotas" name="cuotas"
-                                                                ng-click="calculoCta($event.target.value);"
+                                                            <input class="{{cuota.name}}" 
+                                                                [(ngModel)]="cuotas" 
+                                                                name="cuotas"
+                                                                ng-click="calculoCta($event.target.value); aniosMeses($event.target.value)"
                                                                 type="radio" value="{{cuota.value}}"
                                                                 ng-disabled="contact.OtrosDatos.ValorFinanciar < min || !contact.OtrosDatos.ValorFinanciar"
                                                                 >
@@ -133,6 +166,7 @@
                                     <div class="gridButton">
                                         <input id="stepOne" type="button" name="next" class="next action-button" value="CONTINUAR &#9658;" ng-disabled="desabilitarBtnPrimerPaso()"/>
                                     </div>
+
                                 
                                 </fieldset>
 
@@ -240,17 +274,17 @@
                                                         ng-model="checkTyc" 
                                                         ng-change="contact.OtrosDatos.AutorizaConsultaCentrales = checkTyc; contact.OtrosDatos.AutorizaMareigua = checkTyc;">
 
-                                                <div class="texto"><strong>Acepto los <u class="linkU pointer" ng-click="modal=true" ng-required="true">Términos y Condiciones</u></strong></div>
+                                                <div class="texto"><a href="https://santanderconsumer.co/tyccu/" target="_blank"><strong>Acepto los <u class="linkU pointer" ng-required="true">Términos y Condiciones</u></strong></a></div>
                                             </div>
 
-                                            <div class="typInput">
+                                            <!-- <div class="typInput">
                                                 <input type="checkbox" 
                                                         name="checkTyc" 
                                                         ng-model="checkCyp" 
                                                         ng-change="contact.OtrosDatos.AutorizaConsultaCentrales = checkTyc; contact.OtrosDatos.AutorizaMareigua = checkTyc;">
 
                                                 <div class="texto"><strong>Acepto las <u class="linkU pointer" ng-click="modalDos=true" ng-required="true">condiciones de privacidad</u></strong></div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="gridButton">
                                             <input id="stepTwo" type="submit" name="next" class="next action-button" value="SOLICITAR &#9658;" 
@@ -272,7 +306,8 @@
                                             contactForm.ingreso.$invalid ||
                                             contactForm.ingreso.$error.minv ||
                                             contact.DatosFinancieros.IngresoMensual < minv ||
-                                            !checkTyc || !checkCyp"/>
+                                            !checkTyc || !checkCyp"                                            
+                                            />
                                         </div>
                                 
                                     

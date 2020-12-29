@@ -715,13 +715,13 @@ input#stepThreenoImportant {
 
     .contCheckbox{
         display: grid;
-        grid-template-columns: 50% 50%;
-        .tycInput{
+        grid-template-columns: 100%;
+        /* .tycInput{
             grid-column: 1;
         }
         .typInput{
             grid-column: 2;
-        }
+        } */
     }
 
     .noSmallTablet{

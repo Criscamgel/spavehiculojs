@@ -61,6 +61,22 @@ var ingreso;
             {value:72, name:"sietedos"},
             {value:84, name:"ochocuatro"}
            ]
+        $scope.modelos = [
+            {value:0, name:"Selecciona el modelo"},
+            {value:6, name:"2010"},
+            {value:7, name:"2011"},
+            {value:8, name:"2012"},
+            {value:9, name:"2013"},
+            {value:10, name:"2014"},
+            {value:11, name:"2015"},
+            {value:12, name:"2016"},
+            {value:13, name:"2017"},
+            {value:14, name:"2018"},
+            {value:15, name:"2019"},
+            {value:16, name:"2020"},
+            {value:17, name:"2021"},
+            {value:18, name:"2022"}
+           ]
 
         $scope.contact = {
             DatosBasicos:{
@@ -78,6 +94,9 @@ var ingreso;
                 InfoUno: "",
                 ConcesionarioRadicacion: 0,
                 IdentificacionVendedor: 0
+            },
+            DatosVehiculo: {
+                Modelo: "0"
             }
         }
         /* Igualando desde los params */
@@ -178,14 +197,64 @@ var ingreso;
             }
         }
 
+        $scope.makeCuotaInicial = function(value){
+            $scope.contact.DatosBasicos.CuotaInicial = value * 0.1;
+            $scope.calculaPorcentaje(value);
+            $scope.makeValorTotal($scope.contact.DatosBasicos.ValorVehiculo, $scope.contact.DatosBasicos.CuotaInicial);
+
+        }
+
+        $scope.makeValorTotal = function(valorVehiculo, cuotaInicial){
+            $scope.contact.OtrosDatos.ValorFinanciar = valorVehiculo - cuotaInicial;
+            $scope.calculaPorcentaje(valorVehiculo);
+        }
+
+        $scope.calculaPorcentaje = function(value){/* 
+            if($scope.contact.DatosBasicos.ValorVehiculo >= min){ */
+            $scope.porcentaje = (($scope.contact.DatosBasicos.CuotaInicial * 100) / value);        
+            /* }  */   
+        }
+
+        $scope.aniosMeses = function(value){
+            var meses = Number(value);
+            switch (meses) {
+                case 48:
+                    $scope.contact.OtrosDatos.Plazo = 2;
+                    break;
+
+                case 60:
+                    $scope.contact.OtrosDatos.Plazo = 5;
+                    break;
+
+                case 72:
+                    $scope.contact.OtrosDatos.Plazo = 6;
+                    break;
+
+                case 84:
+                    $scope.contact.OtrosDatos.Plazo = 7;
+                    break;
+            
+                default:
+                    break;
+            }
+        }
+
         $scope.desabilitarBtnPrimerPaso = function(){
-            return !$scope.contact.OtrosDatos.ValorFinanciar || $scope.contact.OtrosDatos.ValorFinanciar < $scope.min || !$scope.cuotas || !$scope.cuota || $scope.cuota == 0;
+            return !$scope.contact.OtrosDatos.ValorFinanciar || 
+            $scope.contact.OtrosDatos.ValorFinanciar < $scope.min ||
+            !$scope.contact.DatosBasicos.ValorVehiculo ||
+            $scope.contact.DatosBasicos.ValorVehiculo < $scope.min ||
+            !$scope.cuotas ||
+            !$scope.cuota ||
+            $scope.cuota == 0 || 
+            $scope.contact.DatosVehiculo.Modelo == '0';
         }
 
         $scope.submitForm = function(){
             $scope.loader = true;            
             $scope.contact.DatosBasicos.TipoDocumento = Number($scope.contact.DatosBasicos.TipoDocumento);
             $scope.contact.DatosFinancieros.ActividadEconomica = Number($scope.contact.DatosFinancieros.ActividadEconomica);
+            $scope.contact.OtrosDatos.InfoTres = document.referrer;
 
             var urlencoded = new URLSearchParams();
             urlencoded.append("Username", "carroYa");
