@@ -254,6 +254,7 @@ var ingreso;
             $scope.loader = true;            
             $scope.contact.DatosBasicos.TipoDocumento = Number($scope.contact.DatosBasicos.TipoDocumento);
             $scope.contact.DatosFinancieros.ActividadEconomica = Number($scope.contact.DatosFinancieros.ActividadEconomica);
+            $scope.contact.DatosVehiculo.TipoVehiculo = 2;
             $scope.contact.OtrosDatos.InfoTres = document.referrer;
 
             var urlencoded = new URLSearchParams();
