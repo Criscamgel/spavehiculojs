@@ -219,7 +219,7 @@ var ingreso;
             var meses = Number(value);
             switch (meses) {
                 case 48:
-                    $scope.contact.DatosBasicos.Plazo = 2;
+                    $scope.contact.DatosBasicos.Plazo = 4;
                     break;
 
                 case 60:
