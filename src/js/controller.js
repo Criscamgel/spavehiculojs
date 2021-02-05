@@ -114,11 +114,10 @@ var ingreso;
         $scope.loader = false;
 
         /* Credenciales */
-        $scope.username = "carroYa";
-        $scope.password = "C@rr0Y@";
+        $scope.userpass = "YwBhAHIAcgBvAFkAYQA6AEMAQAByAHIAMABZAEAA";
 
         /* 2 - Token */
-        var urlT= "https://api.premiercredit.co:11444/PremierServices_API_EXT/api/login/authenticate";
+        var urlT= "https://api.premiercredit.co:11444/PremierServices_API_EXT/api/login/authenticateEncoded";
         // Test
         /* let urlT= "https://apitst.premiercredit.co:11445/PremierServices_api_ext/api/login/authenticate" */
         var headerT = {
@@ -258,8 +257,7 @@ var ingreso;
             $scope.contact.OtrosDatos.InfoTres = document.referrer;
 
             var urlencoded = new URLSearchParams();
-            urlencoded.append("Username", "carroYa");
-            urlencoded.append("Password", "C@rr0Y@");
+            urlencoded.append("UserPass", $scope.userpass);
 
             fetch(urlT, {
                 method: 'POST',
