@@ -104,8 +104,8 @@
                                                         <span class="input-peso left">
                                                             <input type="tel" id="valorVehiculo" name="valorVehiculo" placeholder="Ingresa el valor" ng-model="contact.DatosBasicos.ValorVehiculo" ng-required="true" ng-change="makeCuotaInicial(contact.DatosBasicos.ValorVehiculo); reinicioCuota(contact.DatosBasicos.ValorVehiculo)" currency-input/>
                                                         </span>
-                                                        <div ng-show="contactForm.ValorVehiculo.$touched || contact.DatosBasicos.ValorVehiculo < min">
-                                                            <small class="error">El valor minimo del vehículo debe ser de {{min | currency:"$ ":0}}</small>
+                                                        <div ng-show="contactForm.ValorVehiculo.$touched || contact.DatosBasicos.ValorVehiculo < minVehiculo">
+                                                            <small class="error">El valor minimo del vehículo debe ser de {{minVehiculo | currency:"$ ":0}}</small>
                                                         </div>
 
                                                     </div>
@@ -119,7 +119,7 @@
                                                     </div>
                                             </div>
                                             <!--  -->
-                                            <span class="fs-subtitle">Cuota inicial<u class="asRed">*</u><b>({{porcentaje ? porcentaje : 0}}%)</b></span>
+                                            <span class="fs-subtitle">Cuota inicial<u class="asRed">*</u><b>({{porcentaje ? porcentaje : 0 | number:2}}%)</b></span>
                                             <span class="input-peso left">
                                                 <input type="tel" id="cuotaInicial" name="cuotaInicial" placeholder="Ingresa el valor" ng-model="contact.DatosBasicos.CuotaInicial" ng-required="true" ng-change="makeValorTotal(contact.DatosBasicos.ValorVehiculo, contact.DatosBasicos.CuotaInicial);" ng-disabled="!contact.DatosBasicos.ValorVehiculo" currency-input/>
                                             </span>
@@ -131,8 +131,8 @@
                                             <span class="input-peso left">
                                                 <input type="tel" id="valorFinanciar" name="valorFinanciar" placeholder="Este es el valor total a financiar" ng-disabled="true" ng-model="contact.OtrosDatos.ValorFinanciar" ng-required="true" currency-input/>
                                             </span>
-                                            <div ng-show="contactForm.ValorFinanciar.$touched && contactForm.valorFinanciar.$error.min || contact.OtrosDatos.ValorFinanciar < min">
-                                                <small class="error">El valor minimo a financiar es de {{min | currency:"$ ":0}}</small>
+                                            <div ng-show="contactForm.ValorFinanciar.$touched && contactForm.valorFinanciar.$error.minFinanciar || contact.OtrosDatos.ValorFinanciar < minFinanciar">
+                                                <small class="error">El valor minimo a financiar es de {{minFinanciar | currency:"$ ":0}}</small>
                                             </div>
 
                                                 <div class="seleccionMeses">

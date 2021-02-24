@@ -105,7 +105,8 @@ var ingreso;
         $scope.contact.OtrosDatos.ConcesionarioRadicacion = $scope.idc ? $scope.idc : 0;
         $scope.modal = false;
         $scope.modalDos = false;
-        $scope.min = 20000000;
+        $scope.minVehiculo = 13000000;
+        $scope.minFinanciar = 10000000;
         $scope.minv = 1200000;
 
         $scope.cuota = 0;
