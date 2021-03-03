@@ -114,12 +114,15 @@
                                                     <span class="fs-subtitle">Modelo del carro<u class="asRed">*</u></span>
                                                     <select name="selModelo" ng-model="contact.DatosVehiculo.Modelo" ng-required="true">
                                                         <option value="{{item.value}}" ng-repeat="item in modelos">{{item.name}}</option>
-                                                    </select>
-
+                                                    </select>                                                    
+                                                    <div ng-show="contactForm.selModelo.$viewValue == '' || contactForm.selModelo.$viewValue == 0">
+                                                        <small class="error">Selecciona un modelo</small>
                                                     </div>
+                                                </div>
+
                                             </div>
                                             <!--  -->
-                                            <span class="fs-subtitle">Cuota inicial<u class="asRed">*</u><b>({{porcentaje ? porcentaje : 0 | number:2}}%)</b></span>
+                                            <span class="fs-subtitle">Cuota inicial<u class="asRed">*</u><b>({{porcentaje ? porcentaje : 0 | number : '1.2'}}%)</b></span>
                                             <span class="input-peso left">
                                                 <input type="tel" id="cuotaInicial" name="cuotaInicial" placeholder="Ingresa el valor" ng-model="contact.DatosBasicos.CuotaInicial" ng-required="true" ng-change="makeValorTotal(contact.DatosBasicos.ValorVehiculo, contact.DatosBasicos.CuotaInicial);" ng-disabled="!contact.DatosBasicos.ValorVehiculo" currency-input/>
                                             </span>
